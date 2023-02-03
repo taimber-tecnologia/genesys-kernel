@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="br.com.salomaotech.sistema.jpa.DaoTest" time="0.458" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="br.com.salomaotech.sistema.jpa.DaoTest" time="0.588" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Zulu\zulu-8\jre\bin"/>
@@ -31,7 +31,7 @@
     <property name="maven.ext.class.path" value="C:\Program Files\NetBeans-16\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\NetBeans-16\netbeans\java\maven\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Zulu\zulu-8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Zulu\zulu-8\bin\;C:\Program Files\Zulu\zulu-17\bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\usuario\AppData\Local\Microsoft\WindowsApps;;."/>
+    <property name="java.library.path" value="C:\Program Files\Zulu\zulu-8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Zulu\zulu-8\bin\;C:\Program Files\Zulu\zulu-17\bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\usuario\AppData\Local\Microsoft\WindowsApps;C:\maven\apache-maven-4.0.0-alpha-4\bin;;."/>
     <property name="maven.conf" value="C:\Program Files\NetBeans-16\netbeans\java\maven/conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
@@ -66,11 +66,11 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="br.com.salomaotech.sistema.jpa.DaoTest" name="testCountTodos" time="0.325"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.DaoTest" name="testFindBySqlQuery" time="0.099"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.DaoTest" name="testCountTodos" time="0.42"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.DaoTest" name="testFindBySqlQuery" time="0.12"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.DaoTest" name="testFindById" time="0.002"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.DaoTest" name="testFindTodos" time="0.005"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.DaoTest" name="testFindTodos" time="0.006"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.DaoTest" name="testCreate" time="0.002"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.DaoTest" name="testDelete" time="0.004"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.DaoTest" name="testUpdate" time="0.021"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.DaoTest" name="testDelete" time="0.001"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.DaoTest" name="testUpdate" time="0.037"/>
 </testsuite>
