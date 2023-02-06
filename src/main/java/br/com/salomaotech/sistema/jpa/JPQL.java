@@ -1,10 +1,9 @@
 package br.com.salomaotech.sistema.jpa;
 
+import br.com.salomaotech.sistema.algoritmos.Datas;
 import br.com.salomaotech.sistema.algoritmos.ValidaStringIsEmpty;
 import br.com.salomaotech.sistema.patterns.Modelo;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import static java.util.Objects.isNull;
 
@@ -42,10 +41,12 @@ public class JPQL {
                 apostofro = "";
                 break;
 
-            case "java.util.Date":
-                Date data = (Date) valor;
-                valor = new Timestamp(data.getTime());
-                break;
+        }
+
+        /* se for uma data então converta para o formato de pesquisa válido */
+        if (Datas.isObjetoData(valor)) {
+
+            valor = Datas.calendarParaStringAnoMesDia(valor);
 
         }
 

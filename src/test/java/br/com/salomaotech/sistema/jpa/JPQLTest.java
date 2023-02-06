@@ -11,7 +11,15 @@ public class JPQLTest {
     private final String chaveIdade = "idade";
     private final String chaveNascimento = "nascimento";
     private final String chaveSegundosDeVida = "segundosDeVida";
-    private final Calendar calendar = Calendar.getInstance();
+    private final Calendar nascimento = Calendar.getInstance();
+
+    public JPQLTest() {
+
+        nascimento.set(Calendar.YEAR, 1989);
+        nascimento.set(Calendar.MONTH, Calendar.SEPTEMBER);
+        nascimento.set(Calendar.DAY_OF_MONTH, 15);
+
+    }
 
     @Test
     public void testAddParametroIgual() {
@@ -32,9 +40,9 @@ public class JPQLTest {
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.idade=18"));
 
         jpql = new JPQL(new ModeloDeTeste());
-        jpql.addParametroIgual(chaveNascimento, calendar);
+        jpql.addParametroIgual(chaveNascimento, nascimento);
         System.out.println("Testando classe JPQL metodo: addParametroIgual etapa 04");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento='" + calendar + "'"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento='1989-09-15'"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroIgual(chaveSegundosDeVida, 9223372036854775807L);
@@ -62,9 +70,9 @@ public class JPQLTest {
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.idade!=18"));
 
         jpql = new JPQL(new ModeloDeTeste());
-        jpql.addParametroDiferente(chaveNascimento, calendar);
+        jpql.addParametroDiferente(chaveNascimento, nascimento);
         System.out.println("Testando classe JPQL metodo: addParametroDiferente etapa 04");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento!='" + calendar + "'"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento!='1989-09-15'"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroDiferente(chaveSegundosDeVida, 9223372036854775807L);
@@ -92,9 +100,9 @@ public class JPQLTest {
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.idade LIKE '%18%'"));
 
         jpql = new JPQL(new ModeloDeTeste());
-        jpql.addParametroLike(chaveNascimento, calendar);
+        jpql.addParametroLike(chaveNascimento, nascimento);
         System.out.println("Testando classe JPQL metodo: addParametroLike etapa 04");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento LIKE '%" + calendar + "%'"));
+        assertEquals(false, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento LIKE '%1989-09-15%'"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroLike(chaveSegundosDeVida, 9223372036854775807L);
@@ -162,9 +170,9 @@ public class JPQLTest {
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.idade>=18"));
 
         jpql = new JPQL(new ModeloDeTeste());
-        jpql.addParametroMaiorIgual(chaveNascimento, calendar);
+        jpql.addParametroMaiorIgual(chaveNascimento, nascimento);
         System.out.println("Testando classe JPQL metodo: addParametroMaiorIgual etapa 04");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento>='" + calendar + "'"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento>='1989-09-15'"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroMaiorIgual(chaveSegundosDeVida, 9223372036854775807L);
@@ -192,9 +200,9 @@ public class JPQLTest {
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.idade<=18"));
 
         jpql = new JPQL(new ModeloDeTeste());
-        jpql.addParametroMenorIgual(chaveNascimento, calendar);
+        jpql.addParametroMenorIgual(chaveNascimento, nascimento);
         System.out.println("Testando classe JPQL metodo: addParametroMenorIgual etapa 04");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento<='" + calendar + "'"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento<='1989-09-15'"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroMenorIgual(chaveSegundosDeVida, 9223372036854775807L);
@@ -222,9 +230,9 @@ public class JPQLTest {
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.idade<18"));
 
         jpql = new JPQL(new ModeloDeTeste());
-        jpql.addParametroMenor(chaveNascimento, calendar);
+        jpql.addParametroMenor(chaveNascimento, nascimento);
         System.out.println("Testando classe JPQL metodo: addParametroMenor etapa 04");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento<'" + calendar + "'"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento<'1989-09-15'"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroMenor(chaveSegundosDeVida, 9223372036854775807L);

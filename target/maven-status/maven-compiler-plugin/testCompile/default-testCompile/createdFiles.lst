@@ -19,6 +19,7 @@ br\com\salomaotech\sistema\algoritmos\RemovePastaDeArquivosTest.class
 br\com\salomaotech\sistema\jpa\ModeloDeTesteTest.class
 br\com\salomaotech\sistema\algoritmos\CopiarArquivosSemDialogoTest.class
 br\com\salomaotech\sistema\algoritmos\CriaPastaLocalTest.class
+br\com\salomaotech\genesys\AppTest.class
 br\com\salomaotech\sistema\algoritmos\ImagemExibeTest.class
 br\com\salomaotech\sistema\swing\GraficoTest.class
 br\com\salomaotech\sistema\algoritmos\DatasTest.class
