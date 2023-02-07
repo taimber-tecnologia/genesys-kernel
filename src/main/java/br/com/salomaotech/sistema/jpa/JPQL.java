@@ -23,7 +23,7 @@ public class JPQL {
 
     }
 
-    private String geraItemColunaPesquisa(String chave, Object valor, String clausula) {
+    private String geraItemColunaPesquisa(String chave, Object valor, String clausulaInicio, String clausulaFim) {
 
         String apostofro = "'";
 
@@ -41,16 +41,26 @@ public class JPQL {
                 apostofro = "";
                 break;
 
+            default:
+
+                /* valida se o valor é considerada é considerada uma data */
+                if (Datas.isObjetoData(valor)) {
+
+                    valor = Datas.calendarParaStringAnoMesDia(valor);
+
+                }
+
         }
 
-        /* se for uma data então converta para o formato de pesquisa válido */
-        if (Datas.isObjetoData(valor)) {
+        if (!isNull(clausulaInicio) && !isNull(clausulaFim)) {
 
-            valor = Datas.calendarParaStringAnoMesDia(valor);
+            return objetoDadosDoSelect + "." + chave + clausulaInicio + valor + clausulaFim;
+
+        } else {
+
+            return objetoDadosDoSelect + "." + chave + clausulaInicio + apostofro + valor + apostofro;
 
         }
-
-        return objetoDadosDoSelect + "." + chave + clausula + apostofro + valor + apostofro;
 
     }
 
@@ -90,7 +100,7 @@ public class JPQL {
 
         if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
 
-            colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "="));
+            colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "=", null));
 
         }
 
@@ -100,7 +110,7 @@ public class JPQL {
 
         if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
 
-            colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "!="));
+            colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "!=", null));
 
         }
 
@@ -110,7 +120,7 @@ public class JPQL {
 
         if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
 
-            colunasPesquisar.add(objetoDadosDoSelect + "." + chave + " LIKE '%" + valor + "%'");
+            colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, " LIKE '%", "%'"));
 
         }
 
@@ -140,7 +150,7 @@ public class JPQL {
 
         if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
 
-            colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, ">="));
+            colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, ">=", null));
 
         }
 
@@ -150,7 +160,7 @@ public class JPQL {
 
         if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
 
-            colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "<="));
+            colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "<=", null));
 
         }
 
@@ -160,7 +170,7 @@ public class JPQL {
 
         if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
 
-            colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "<"));
+            colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "<", null));
 
         }
 

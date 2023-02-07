@@ -102,7 +102,7 @@ public class JPQLTest {
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroLike(chaveNascimento, nascimento);
         System.out.println("Testando classe JPQL metodo: addParametroLike etapa 04");
-        assertEquals(false, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento LIKE '%1989-09-15%'"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento LIKE '%1989-09-15%'"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroLike(chaveSegundosDeVida, 9223372036854775807L);
@@ -129,6 +129,11 @@ public class JPQLTest {
         System.out.println("Testando classe JPQL metodo: addParametroNaoNulo etapa 03");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento!=null"));
 
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroNaoNulo(chaveSegundosDeVida);
+        System.out.println("Testando classe JPQL metodo: addParametroNaoNulo etapa 04");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida!=null"));
+
     }
 
     @Test
@@ -148,6 +153,11 @@ public class JPQLTest {
         jpql.addParametroNulo(chaveNascimento);
         System.out.println("Testando classe JPQL metodo: addParametroNulo etapa 03");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento=null"));
+
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroNulo(chaveSegundosDeVida);
+        System.out.println("Testando classe JPQL metodo: addParametroNulo etapa 04");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida=null"));
 
     }
 

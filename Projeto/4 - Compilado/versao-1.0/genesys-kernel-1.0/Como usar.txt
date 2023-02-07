@@ -1,0 +1,10 @@
+1 - Instale o MAVEN
+2 - Rode o Instalar.bat, após isso o genesys-kernel-1.0-shaded.jar estará instalado na pasta de depências do MAVEN.
+3 - Adicione a depência nos projetos, como é mostrado abaixo.
+
+<dependency>
+	<groupId>br.com.salomaotech</groupId>
+	<artifactId>genesys-kernel</artifactId>
+	<version>1.0.0</version>
+</dependency>
+

@@ -101,14 +101,20 @@ public class DatasTest {
     @Test
     public void testCalendarParaStringAnoMesDia() {
 
+        /* data 1 */
         Calendar data1 = Calendar.getInstance();
-        Calendar data2 = Calendar.getInstance();
-        Date data3 = new Date();
-        String data4 = "1989-09-15";
-
         data1.set(Calendar.YEAR, 1989);
         data1.set(Calendar.MONTH, Calendar.SEPTEMBER);
         data1.set(Calendar.DAY_OF_MONTH, 15);
+
+        /* data 2 */
+        Calendar data2 = Calendar.getInstance();
+
+        /* data 3 */
+        Date data3 = new Date();
+
+        /* data 4 */
+        String data4 = "1989-09-15";
 
         System.out.println("Testando classe Datas metodo: calendarParaStringAnoMesDia etapa 01");
         assertEquals(true, Datas.calendarParaStringAnoMesDia(data1).equals("1989-09-15"));
