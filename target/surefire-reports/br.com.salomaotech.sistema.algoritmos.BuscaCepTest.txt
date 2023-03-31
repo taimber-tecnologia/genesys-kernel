@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: br.com.salomaotech.sistema.algoritmos.BuscaCepTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.437 sec
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.736 sec

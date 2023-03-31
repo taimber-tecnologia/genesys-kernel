@@ -1,6 +1,7 @@
 package br.com.salomaotech.sistema.jpa;
 
 import java.util.Calendar;
+import static java.util.Objects.isNull;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -332,6 +333,31 @@ public class JPQLTest {
         jpql.addParametroIgual(chaveNome, "Teste");
         System.out.println("Testando classe JPQL metodo: construirSelect etapa 02");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nome='Teste'"));
+
+    }
+
+    @Test
+    public void testConstruirSelectDistinct() {
+
+        String query;
+
+        query = "SELECT p FROM ModeloDeTeste p WHERE p.id IN (SELECT MAX(p2.id) FROM ModeloDeTeste p2 GROUP BY p2.nome) ORDER BY p.nome ASC";
+        jpql = new JPQL(new ModeloDeTeste());
+        System.out.println("Testando classe JPQL metodo: construirSelectDistinct etapa 01");
+        assertEquals(true, jpql.construirSelectDistinct("nome").equals(query));
+
+        query = "SELECT p FROM ModeloDeTeste p WHERE p.id IN (SELECT MAX(p2.id) FROM ModeloDeTeste p2 GROUP BY p2.telefone) ORDER BY p.telefone ASC";
+        jpql = new JPQL(new ModeloDeTeste());
+        System.out.println("Testando classe JPQL metodo: construirSelectDistinct etapa 02");
+        assertEquals(true, jpql.construirSelectDistinct("telefone").equals(query));
+
+        jpql = new JPQL(new ModeloDeTeste());
+        System.out.println("Testando classe JPQL metodo: construirSelectDistinct etapa 03");
+        assertEquals(true, isNull(jpql.construirSelectDistinct(null)));
+
+        jpql = new JPQL(new ModeloDeTeste());
+        System.out.println("Testando classe JPQL metodo: construirSelectDistinct etapa 04");
+        assertEquals(true, isNull(jpql.construirSelectDistinct("")));
 
     }
 

@@ -226,17 +226,25 @@ public class JPQL {
 
     public String construirSelectDistinct(String campo) {
 
-        StringBuilder sql = new StringBuilder();
-        sql.append("SELECT p FROM ");
-        sql.append(nomeTabela);
-        sql.append(" p WHERE p.id IN (SELECT MAX(p2.id) FROM ");
-        sql.append(nomeTabela);
-        sql.append(" p2 GROUP BY p2.");
-        sql.append(campo);
-        sql.append(") ORDER BY p.");
-        sql.append(campo);
-        sql.append(" ASC");
-        return sql.toString();
+        if (!ValidaStringIsEmpty.isEmpty(campo)) {
+
+            StringBuilder sql = new StringBuilder();
+            sql.append("SELECT p FROM ");
+            sql.append(nomeTabela);
+            sql.append(" p WHERE p.id IN (SELECT MAX(p2.id) FROM ");
+            sql.append(nomeTabela);
+            sql.append(" p2 GROUP BY p2.");
+            sql.append(campo);
+            sql.append(") ORDER BY p.");
+            sql.append(campo);
+            sql.append(" ASC");
+            return sql.toString();
+
+        } else {
+
+            return null;
+
+        }
 
     }
 
