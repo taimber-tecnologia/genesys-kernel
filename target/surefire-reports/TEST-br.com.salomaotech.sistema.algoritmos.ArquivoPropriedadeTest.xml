@@ -66,10 +66,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.ArquivoPropriedadeTest" name="testCriar" time="0.002"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.ArquivoPropriedadeTest" name="testIsArquivoConfiguracaoExiste" time="0.003"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.ArquivoPropriedadeTest" name="testCriar" time="0.009"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.ArquivoPropriedadeTest" name="testIsArquivoConfiguracaoExiste" time="0.001"/>
   <testcase classname="br.com.salomaotech.sistema.algoritmos.ArquivoPropriedadeTest" name="testAbsolutePath" time="0.001"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.ArquivoPropriedadeTest" name="testGetProperties" time="0.002"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.ArquivoPropriedadeTest" name="testDeletar" time="0.001"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.ArquivoPropriedadeTest" name="testSalvar" time="0.002"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.ArquivoPropriedadeTest" name="testGetProperties" time="0"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.ArquivoPropriedadeTest" name="testDeletar" time="0"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.ArquivoPropriedadeTest" name="testSalvar" time="0"/>
 </testsuite>

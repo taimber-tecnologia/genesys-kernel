@@ -88,27 +88,27 @@ public class JPQLTest {
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroLike(chaveNome, "Teste");
         System.out.println("Testando classe JPQL metodo: addParametroLike etapa 01");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nome LIKE '%Teste%'"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE LOWER(objeto.nome) LIKE LOWER('%Teste%')"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroLike(chaveIdade, "18");
         System.out.println("Testando classe JPQL metodo: addParametroLike etapa 02");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.idade LIKE '%18%'"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE LOWER(objeto.idade) LIKE LOWER('%18%')"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroLike(chaveIdade, 18);
         System.out.println("Testando classe JPQL metodo: addParametroLike etapa 03");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.idade LIKE '%18%'"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE LOWER(objeto.idade) LIKE LOWER('%18%')"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroLike(chaveNascimento, nascimento);
         System.out.println("Testando classe JPQL metodo: addParametroLike etapa 04");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento LIKE '%1989-09-15%'"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE LOWER(objeto.nascimento) LIKE LOWER('%1989-09-15%')"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroLike(chaveSegundosDeVida, 9223372036854775807L);
         System.out.println("Testando classe JPQL metodo: addParametroLike etapa 05");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida LIKE '%9223372036854775807%'"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE LOWER(objeto.segundosDeVida) LIKE LOWER('%9223372036854775807%')"));
 
     }
 

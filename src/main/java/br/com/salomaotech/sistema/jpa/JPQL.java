@@ -120,7 +120,11 @@ public class JPQL {
 
         if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
 
-            colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, " LIKE '%", "%'"));
+            /* LOWER é para a sql não ter case sentive */
+            String condicao = geraItemColunaPesquisa(chave, valor, " LIKE LOWER('%", "%')");
+            condicao = condicao.replace(objetoDadosDoSelect + "." + chave, "LOWER(" + objetoDadosDoSelect + "." + chave + ")");
+
+            colunasPesquisar.add(condicao);
 
         }
 

@@ -66,9 +66,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.DatasTest" name="testAdicionarMesCalendar" time="0.004"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.DatasTest" name="testCalendarParaStringAnoMesDia" time="0.001"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.DatasTest" name="testCalendarParaStringBr" time="0"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.DatasTest" name="testIsObjetoData" time="0.054"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.DatasTest" name="testIsCalendarioValido" time="0.001"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.DatasTest" name="testAdicionarMesCalendar" time="0.006"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.DatasTest" name="testCalendarParaStringAnoMesDia" time="0.003"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.DatasTest" name="testCalendarParaStringBr" time="0.001"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.DatasTest" name="testIsObjetoData" time="0.05"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.DatasTest" name="testIsCalendarioValido" time="0"/>
 </testsuite>
