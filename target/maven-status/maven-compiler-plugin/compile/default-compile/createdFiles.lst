@@ -29,6 +29,7 @@ br\com\salomaotech\sistema\algoritmos\HashMd5.class
 br\com\salomaotech\sistema\algoritmos\ImagemExibe.class
 br\com\salomaotech\sistema\jpa\ConfiguracoesConexao.class
 br\com\salomaotech\sistema\jpa\ModeloDeTeste.class
+br\com\salomaotech\sistema\swing\JTableRenderizadorCaixaAlta.class
 br\com\salomaotech\sistema\jpa\ConexaoSingleton.class
 br\com\salomaotech\sistema\jpa\Dao.class
 br\com\salomaotech\sistema\swing\PopUp$1.class

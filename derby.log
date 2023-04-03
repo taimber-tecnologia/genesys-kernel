@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Fri Mar 31 10:39:57 GMT-03:00 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0187-37e5-7295-0000040ffa20 
+Mon Apr 03 13:10:50 GMT-03:00 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0187-47e2-ae7d-00000491d878 
 on database directory C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\target\arquivos\banco with class loader sun.misc.Launcher$AppClassLoader@3d4eac69 
 Loaded from file:/C:/Users/usuario/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
 java.vendor=Azul Systems, Inc.

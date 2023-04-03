@@ -16,6 +16,7 @@ br\com\salomaotech\sistema\algoritmos\ImagemRedimensionaTest.class
 br\com\salomaotech\sistema\algoritmos\OrdenarMapTest.class
 br\com\salomaotech\sistema\algoritmos\ArquivoPropriedadeTest.class
 br\com\salomaotech\sistema\algoritmos\RemovePastaDeArquivosTest.class
+br\com\salomaotech\sistema\swing\JTableRenderizadorCaixaAltaTest.class
 br\com\salomaotech\sistema\jpa\ModeloDeTesteTest.class
 br\com\salomaotech\sistema\algoritmos\CopiarArquivosSemDialogoTest.class
 br\com\salomaotech\sistema\algoritmos\CriaPastaLocalTest.class

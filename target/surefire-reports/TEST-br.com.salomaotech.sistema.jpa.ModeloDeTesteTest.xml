@@ -68,12 +68,12 @@
   </properties>
   <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testSetNascimento" time="0"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testGetIdade" time="0"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testGetId" time="0"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testGetId" time="0.001"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testSetId" time="0"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testGetNome" time="0"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testSetSegundosDeVida" time="0.001"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testSetSegundosDeVida" time="0"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testGetSegundosDeVida" time="0"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testGetNascimento" time="0"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testSetNome" time="0.001"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testGetNascimento" time="0.001"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testSetNome" time="0"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testSetIdade" time="0"/>
 </testsuite>
