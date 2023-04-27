@@ -1,25 +1,32 @@
 package br.com.salomaotech.sistema.swing;
 
-import java.awt.Component;
-import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
-public class JTableRenderizadorCaixaAlta extends DefaultTableCellRenderer {
+public class JTableRenderizadorCaixaAlta {
 
-    @Override
-    public Component getTableCellRendererComponent(JTable tabela, Object valor, boolean isSelected, boolean hasFocus, int linha, int coluna) {
+    public void renderizar(JTable table) {
 
-        Component componente = super.getTableCellRendererComponent(tabela, valor, isSelected, hasFocus, linha, coluna);
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        int rowCount = model.getRowCount();
+        int colCount = model.getColumnCount();
 
-        if (componente instanceof JLabel) {
+        for (int row = 0; row < rowCount; row++) {
 
-            JLabel label = (JLabel) componente;
-            label.setText(label.getText().toUpperCase());
+            for (int col = 0; col < colCount; col++) {
+
+                Object value = model.getValueAt(row, col);
+
+                if (value instanceof String) {
+
+                    String upperValue = ((String) value).toUpperCase();
+                    model.setValueAt(upperValue, row, col);
+
+                }
+
+            }
 
         }
-
-        return componente;
 
     }
 
