@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="br.com.salomaotech.sistema.jpa.PaginadorTest" time="1.784" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="br.com.salomaotech.sistema.jpa.PaginadorTest" time="0.563" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Zulu\zulu-8\jre\bin"/>
     <property name="java.vm.version" value="25.352-b08"/>
     <property name="jdk.vendor.version" value="Zulu 8.66.0.15-CA-win64"/>
     <property name="java.vm.vendor" value="Azul Systems, Inc."/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\taimber\Documents\NetBeansProjects\genesys-kernel"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel"/>
     <property name="java.vendor.url" value="http://www.azul.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -17,12 +17,12 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\taimber\Documents\NetBeansProjects\genesys-kernel"/>
+    <property name="user.dir" value="C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel"/>
     <property name="java.runtime.version" value="1.8.0_352-b08"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Zulu\zulu-8\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\taimber\AppData\Local\Temp\"/>
+    <property name="java.io.tmpdir" value="C:\Users\usuario\AppData\Local\Temp\"/>
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
@@ -31,19 +31,19 @@
     <property name="maven.ext.class.path" value="C:\Program Files\NetBeans-16\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\NetBeans-16\netbeans\java\maven\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Zulu\zulu-8\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Zulu\zulu-17\bin\;C:\Program Files\Zulu\zulu-8\bin\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\taimber\AppData\Local\Microsoft\WindowsApps;C:\Programas\apache-maven-4.0.0-alpha-4\bin;;."/>
+    <property name="java.library.path" value="C:\Program Files\Zulu\zulu-8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Zulu\zulu-8\bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Users\usuario\AppData\Local\Microsoft\WindowsApps;C:\maven\apache-maven-4.0.0-alpha-4\bin;;C:\Users\usuario\.dotnet\tools;."/>
     <property name="maven.conf" value="C:\Program Files\NetBeans-16\netbeans\java\maven/conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.0"/>
     <property name="library.jansi.path" value="C:\Program Files\NetBeans-16\netbeans\java\maven\lib\jansi-native"/>
-    <property name="user.home" value="C:\Users\taimber"/>
-    <property name="user.timezone" value="America/Sao_Paulo"/>
+    <property name="user.home" value="C:\Users\usuario"/>
+    <property name="user.timezone" value="GMT-03:00"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
-    <property name="user.name" value="taimber"/>
+    <property name="user.name" value="usuario"/>
     <property name="java.class.path" value="C:\Program Files\NetBeans-16\netbeans\java\maven\boot\plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
@@ -54,7 +54,7 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
     <property name="java.version" value="1.8.0_352"/>
-    <property name="java.ext.dirs" value="C:\Program Files\Zulu\zulu-8\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Zulu\zulu-8\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Zulu\zulu-8\jre\lib\resources.jar;C:\Program Files\Zulu\zulu-8\jre\lib\rt.jar;C:\Program Files\Zulu\zulu-8\jre\lib\sunrsasign.jar;C:\Program Files\Zulu\zulu-8\jre\lib\jsse.jar;C:\Program Files\Zulu\zulu-8\jre\lib\jce.jar;C:\Program Files\Zulu\zulu-8\jre\lib\charsets.jar;C:\Program Files\Zulu\zulu-8\jre\lib\jfr.jar;C:\Program Files\Zulu\zulu-8\jre\lib\cat.jar;C:\Program Files\Zulu\zulu-8\jre\classes"/>
     <property name="java.vendor" value="Azul Systems, Inc."/>
     <property name="java.specification.maintenance.version" value="4"/>
@@ -66,6 +66,6 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="br.com.salomaotech.sistema.jpa.PaginadorTest" name="testGetPageSize" time="0.558"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.PaginadorTest" name="testGetPageNumber" time="1.226"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.PaginadorTest" name="testGetPageSize" time="0.28"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.PaginadorTest" name="testGetPageNumber" time="0.283"/>
 </testsuite>
