@@ -1,3 +1,4 @@
+C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\genesys\controller\ativador\AtivadorMetodosTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\jpa\ModeloDeTesteTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\GerarPdf2Test.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\genesys\AppTest.java
@@ -10,6 +11,7 @@ C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\swing\MudaCorLinhaJtableTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\swing\GraficoTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\CriaPastaLocalTest.java
+C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\genesys\model\ativador\AtivadorTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\BigDecimaisTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\ValidaStringIsEmptyTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\HashMd5Test.java
@@ -21,12 +23,15 @@ C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\ValidaCpfTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\DatasTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\jpa\RepositoryTest.java
+C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\genesys\controller\ativador\AtivadorEventosTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\ImagemExibeTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\IsStringNumeroTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\jpa\DaoTest.java
+C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\genesys\controller\ativador\AtivadorControllerTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\ExecutaProgramaExternoTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\GerarPdfTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\ArquivoPropriedadeTest.java
+C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\genesys\controller\ativador\AtivadorValidadorTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\algoritmos\BuscaCepTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\swing\PopUpTest.java
 C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\src\test\java\br\com\salomaotech\sistema\jpa\PaginadorTest.java

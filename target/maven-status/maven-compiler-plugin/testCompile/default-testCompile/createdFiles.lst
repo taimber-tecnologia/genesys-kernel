@@ -1,3 +1,5 @@
+br\com\salomaotech\genesys\controller\ativador\AtivadorEventosTest.class
+br\com\salomaotech\genesys\controller\ativador\AtivadorValidadorTest.class
 br\com\salomaotech\sistema\algoritmos\IsStringNumeroTest.class
 br\com\salomaotech\sistema\algoritmos\ValidaStringIsEmptyTest.class
 br\com\salomaotech\sistema\swing\MudaCorLinhaJtableTest.class
@@ -5,6 +7,7 @@ br\com\salomaotech\sistema\algoritmos\CopiaArquivosComDialogoTest.class
 br\com\salomaotech\sistema\algoritmos\ExecutaProgramaExternoTest.class
 br\com\salomaotech\sistema\jpa\DaoTest.class
 br\com\salomaotech\sistema\algoritmos\BuscaCepTest.class
+br\com\salomaotech\genesys\controller\ativador\AtivadorMetodosTest.class
 br\com\salomaotech\sistema\jpa\ConfiguracoesConexaoTest.class
 br\com\salomaotech\sistema\jpa\PaginadorTest.class
 br\com\salomaotech\sistema\algoritmos\GerarPdf2Test.class
@@ -18,6 +21,8 @@ br\com\salomaotech\sistema\algoritmos\ArquivoPropriedadeTest.class
 br\com\salomaotech\sistema\algoritmos\RemovePastaDeArquivosTest.class
 br\com\salomaotech\sistema\swing\JTableRenderizadorCaixaAltaTest.class
 br\com\salomaotech\sistema\jpa\ModeloDeTesteTest.class
+br\com\salomaotech\genesys\controller\ativador\AtivadorControllerTest.class
+br\com\salomaotech\genesys\model\ativador\AtivadorTest.class
 br\com\salomaotech\sistema\algoritmos\CopiarArquivosSemDialogoTest.class
 br\com\salomaotech\sistema\algoritmos\CriaPastaLocalTest.class
 br\com\salomaotech\genesys\AppTest.class
