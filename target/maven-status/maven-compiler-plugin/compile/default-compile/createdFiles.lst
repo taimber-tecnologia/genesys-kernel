@@ -26,6 +26,7 @@ br\com\salomaotech\sistema\jpa\Repository.class
 br\com\salomaotech\sistema\patterns\Modelo.class
 br\com\salomaotech\sistema\swing\MudaIconeJframe.class
 br\com\salomaotech\sistema\jpa\Paginador.class
+br\com\salomaotech\sistema\jpa\FixedDerbyDialect.class
 br\com\salomaotech\sistema\algoritmos\ConverteNumeroParaMoedaBr.class
 br\com\salomaotech\sistema\swing\MudaCorLinhaJtable$1.class
 br\com\salomaotech\genesys\controller\ativador\AtivadorValidador.class

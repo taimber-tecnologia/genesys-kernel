@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="13" failures="0" name="br.com.salomaotech.sistema.jpa.JPQLTest" time="0.007" errors="0" skipped="0">
+<testsuite tests="13" failures="0" name="br.com.salomaotech.sistema.jpa.JPQLTest" time="0.008" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Zulu\zulu-8\jre\bin"/>
@@ -69,13 +69,13 @@
   <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testConstruirSelectDistinct" time="0.001"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroLike" time="0.001"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroNulo" time="0"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroDiferente" time="0.001"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroNaoNulo" time="0"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroMaiorIgual" time="0"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroIgual" time="0.001"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroDiferente" time="0"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroNaoNulo" time="0.001"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroMaiorIgual" time="0.003"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroIgual" time="0"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroMenor" time="0.001"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddOrderBy" time="0.002"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroCompararDuasChaves" time="0"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddOrderBy" time="0"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroCompararDuasChaves" time="0.001"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testGetCondicaoWhere" time="0"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testAddParametroMenorIgual" time="0"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.JPQLTest" name="testConstruirSelect" time="0"/>

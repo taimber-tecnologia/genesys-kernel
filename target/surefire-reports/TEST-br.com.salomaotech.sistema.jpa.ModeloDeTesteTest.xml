@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="10" failures="0" name="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" time="0" errors="0" skipped="0">
+<testsuite tests="10" failures="0" name="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" time="0.003" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Zulu\zulu-8\jre\bin"/>
@@ -67,9 +67,9 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testSetNascimento" time="0"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testGetIdade" time="0"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testGetIdade" time="0.002"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testGetId" time="0"/>
-  <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testSetId" time="0"/>
+  <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testSetId" time="0.001"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testGetNome" time="0"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testSetSegundosDeVida" time="0"/>
   <testcase classname="br.com.salomaotech.sistema.jpa.ModeloDeTesteTest" name="testGetSegundosDeVida" time="0"/>
