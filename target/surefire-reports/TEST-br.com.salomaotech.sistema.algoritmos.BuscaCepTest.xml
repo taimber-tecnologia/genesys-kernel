@@ -66,9 +66,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetUf" time="0.824"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetLogradouro" time="0.125"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetBairro" time="0.123"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetCidade" time="0.124"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testBuscar" time="0.244"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetUf" time="0.815"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetLogradouro" time="0.126"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetBairro" time="0.126"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetCidade" time="0.126"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testBuscar" time="0.247"/>
 </testsuite>

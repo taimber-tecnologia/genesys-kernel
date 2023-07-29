@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="br.com.salomaotech.sistema.algoritmos.ExecutaProgramaExternoTest" time="0.144" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="br.com.salomaotech.sistema.algoritmos.ExecutaProgramaExternoTest" time="0.145" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Zulu\zulu-8\jre\bin"/>
@@ -67,6 +67,6 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase classname="br.com.salomaotech.sistema.algoritmos.ExecutaProgramaExternoTest" name="testExecutarModoDesktop" time="0"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.ExecutaProgramaExternoTest" name="testAbreUrlNoBrowser" time="0.144"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.ExecutaProgramaExternoTest" name="testAbreUrlNoBrowser" time="0.145"/>
   <testcase classname="br.com.salomaotech.sistema.algoritmos.ExecutaProgramaExternoTest" name="testExecutarModoJar" time="0"/>
 </testsuite>
