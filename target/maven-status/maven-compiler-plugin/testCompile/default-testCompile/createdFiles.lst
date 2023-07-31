@@ -8,6 +8,7 @@ br\com\salomaotech\sistema\algoritmos\ExecutaProgramaExternoTest.class
 br\com\salomaotech\sistema\jpa\DaoTest.class
 br\com\salomaotech\sistema\algoritmos\BuscaCepTest.class
 br\com\salomaotech\genesys\controller\ativador\AtivadorMetodosTest.class
+br\com\salomaotech\sistema\algoritmos\CaminhoArquivoNormalizadoTest.class
 br\com\salomaotech\sistema\jpa\ConfiguracoesConexaoTest.class
 br\com\salomaotech\sistema\jpa\PaginadorTest.class
 br\com\salomaotech\sistema\algoritmos\GerarPdf2Test.class

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" time="1.44" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" time="1.469" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Zulu\zulu-8\jre\bin"/>
@@ -66,9 +66,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetUf" time="0.815"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetLogradouro" time="0.126"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetBairro" time="0.126"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetCidade" time="0.126"/>
-  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testBuscar" time="0.247"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetUf" time="0.83"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetLogradouro" time="0.129"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetBairro" time="0.122"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testGetCidade" time="0.139"/>
+  <testcase classname="br.com.salomaotech.sistema.algoritmos.BuscaCepTest" name="testBuscar" time="0.249"/>
 </testsuite>
