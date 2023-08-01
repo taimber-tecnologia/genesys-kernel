@@ -7,19 +7,21 @@ import br.com.salomaotech.sistema.swing.MudaIconeJframe;
 public class AtivadorController {
 
     private final JFativador view = new JFativador();
-    private final AtivadorMetodos ativadorMetodos = new AtivadorMetodos(view);
-    private final AtivadorEventos ativadorEventos = new AtivadorEventos(view);
+    private AtivadorMetodos ativadorMetodos;
+    private AtivadorEventos ativadorEventos;
 
-    public void construir() {
+    public void construir(String nomeSistema) {
 
         /* valida se o sistema não está ativado */
-        if (!new Ativador().isAtivado()) {
+        if (!new Ativador(nomeSistema).isAtivado()) {
 
             /* metodos */
+            ativadorMetodos = new AtivadorMetodos(view, nomeSistema);
             ativadorMetodos.addPopUpMenu();
             ativadorMetodos.exibeDiasRestantes();
 
             /* eventos */
+            ativadorEventos = new AtivadorEventos(view);
             ativadorEventos.setAtivadorMetodos(ativadorMetodos);
             ativadorEventos.addEventos();
 

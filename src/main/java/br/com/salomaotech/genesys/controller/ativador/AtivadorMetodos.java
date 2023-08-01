@@ -10,9 +10,11 @@ public class AtivadorMetodos {
 
     private final JFativador view;
     private final int segundosExibirJanela = 30;
+    private final String nomeSistema;
 
-    public AtivadorMetodos(JFativador view) {
+    public AtivadorMetodos(JFativador view, String nomeSistema) {
         this.view = view;
+        this.nomeSistema = nomeSistema;
         addTimerLembreteAtivacao();
     }
 
@@ -25,13 +27,13 @@ public class AtivadorMetodos {
 
     public boolean isAtivar(String chave) {
 
-        return new Ativador().ativar(chave);
+        return new Ativador(nomeSistema).ativar(chave);
 
     }
 
     public void exibeDiasRestantes() {
 
-        view.jLdiasRestantes.setText(String.valueOf(new Ativador().getDiasRestantes()));
+        view.jLdiasRestantes.setText(String.valueOf(new Ativador(nomeSistema).getDiasRestantes()));
 
     }
 
@@ -44,7 +46,7 @@ public class AtivadorMetodos {
             @Override
             public void run() {
 
-                if (new Ativador().isExpirou()) {
+                if (new Ativador(nomeSistema).isExpirou()) {
 
                     view.setVisible(true);
 
@@ -58,7 +60,6 @@ public class AtivadorMetodos {
 
         };
 
-        /* atualiza o timer */
         timer.schedule(timerTask, 0, (segundosExibirJanela * 1000));
 
     }

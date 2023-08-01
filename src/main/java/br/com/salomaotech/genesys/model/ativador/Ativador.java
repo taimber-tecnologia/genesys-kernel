@@ -34,10 +34,16 @@ public class Ativador {
     private String ativadoTrue = HashMd5.cifrar("KEY_PROP_ATIVADO_TRUE");
     private String ativadoFalse = HashMd5.cifrar("KEY_PROP_ATIVADO_FALSE");
 
-    /* relacionado a versão */
-    private String versao = HashMd5.cifrar("2.0");
+    /* relacionado ao nome do sistema */
+    private String nomeSistema = "";
 
-    public Ativador() {
+    public Ativador(String nomeSistema) {
+
+        if (!isNull(nomeSistema)) {
+
+            this.nomeSistema = HashMd5.cifrar(nomeSistema);
+
+        }
 
         /* cria a pasta do arquivo se ela não existir */
         CriaPastaLocal.criar(pathArquivo);
@@ -187,7 +193,7 @@ public class Ativador {
         /* gera as chaves */
         for (int i = 0; i <= numeroMaximoDeChaves; i++) {
 
-            retorno.add(HashMd5.cifrar(preFixoDaChaveDeAtivacao + i + versao + posFixoDaChaveDeAtivacao));
+            retorno.add(HashMd5.cifrar(preFixoDaChaveDeAtivacao + i + nomeSistema + posFixoDaChaveDeAtivacao));
 
         }
 

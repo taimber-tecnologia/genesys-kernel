@@ -8,8 +8,9 @@ import static org.junit.Assert.*;
 
 public class AtivadorMetodosTest {
 
+    private final String nomeSistema = "kernel-genesys-2.0";
     private final JFativador view = new JFativador();
-    private final AtivadorMetodos metodos = new AtivadorMetodos(view);
+    private final AtivadorMetodos metodos = new AtivadorMetodos(view, nomeSistema);
 
     @Test
     public void testAddPopUpMenu() {
@@ -28,7 +29,7 @@ public class AtivadorMetodosTest {
     public void testIsAtivar() {
 
         System.out.println("Testando classe AtivadorMetodos metodo: isAtivar etapa 01 chave valida");
-        assertEquals(true, metodos.isAtivar("12f9480d9a75ee7502eb35db6b9ffffe"));
+        assertEquals(true, metodos.isAtivar("84bffb01b794da3dbf078f5cc2529364"));
 
         System.out.println("Testando classe AtivadorMetodos metodo: isAtivar etapa 02 chave invalida");
         assertEquals(false, metodos.isAtivar("123456"));
@@ -49,7 +50,7 @@ public class AtivadorMetodosTest {
 
         /* testa se os dados populados são válidos */
         System.out.println("Testando classe AtivadorMetodos metodo: exibeDiasRestantes");
-        assertEquals(true, view.jLdiasRestantes.getText().equals(String.valueOf(new Ativador().getDiasRestantes())));
+        assertEquals(true, view.jLdiasRestantes.getText().equals(String.valueOf(new Ativador(nomeSistema).getDiasRestantes())));
 
     }
 

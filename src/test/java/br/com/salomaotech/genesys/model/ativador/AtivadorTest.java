@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class AtivadorTest {
 
-    private final Ativador ativador = new Ativador();
+    private final Ativador ativador = new Ativador("2.0");
 
     public AtivadorTest() {
 

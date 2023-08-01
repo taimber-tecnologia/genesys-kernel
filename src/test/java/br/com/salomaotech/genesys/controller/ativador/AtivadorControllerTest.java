@@ -5,6 +5,7 @@ import org.junit.Test;
 
 public class AtivadorControllerTest {
 
+    private final String nomeSistema = "kernel-genesys-2.0";
     private final AtivadorController ativadorController = new AtivadorController();
 
     @Test
@@ -14,7 +15,7 @@ public class AtivadorControllerTest {
 
         try {
 
-            ativadorController.construir();
+            ativadorController.construir(nomeSistema);
 
         } catch (Exception ex) {
 
