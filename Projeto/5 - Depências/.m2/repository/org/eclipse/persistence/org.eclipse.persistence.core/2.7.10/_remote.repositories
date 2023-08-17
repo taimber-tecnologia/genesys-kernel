@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Jul 28 22:37:19 BRT 2023
+org.eclipse.persistence.core-2.7.10.jar>central=
+org.eclipse.persistence.core-2.7.10.pom>central=

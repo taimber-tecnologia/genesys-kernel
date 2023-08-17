@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Aug 17 14:41:46 BRT 2023
+genesys-kernel-2.0.0.jar>=
+genesys-kernel-2.0.0.pom>=

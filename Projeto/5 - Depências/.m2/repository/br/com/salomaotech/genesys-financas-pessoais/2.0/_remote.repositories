@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Aug 17 14:45:46 BRT 2023
+genesys-financas-pessoais-2.0.pom>=
+genesys-financas-pessoais-2.0-shaded.jar>=
+genesys-financas-pessoais-2.0.jar>=

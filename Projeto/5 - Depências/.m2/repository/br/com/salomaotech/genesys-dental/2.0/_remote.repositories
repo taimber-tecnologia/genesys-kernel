@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Aug 17 14:43:53 BRT 2023
+genesys-dental-2.0.jar>=
+genesys-dental-2.0-shaded.jar>=
+genesys-dental-2.0.pom>=

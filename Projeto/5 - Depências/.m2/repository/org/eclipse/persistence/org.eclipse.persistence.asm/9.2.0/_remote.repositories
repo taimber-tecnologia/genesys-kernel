@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Jul 28 22:37:19 BRT 2023
+org.eclipse.persistence.asm-9.2.0.jar>central=
+org.eclipse.persistence.asm-9.2.0.pom>central=
