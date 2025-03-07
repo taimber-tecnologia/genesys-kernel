@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Thu Aug 17 14:41:13 BRT 2023:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-018a-0496-4b7e-000022932ae0 
-on database directory C:\Users\-\Documents\NetBeansProjects\genesys-kernel\target\arquivos\banco with class loader sun.misc.Launcher$AppClassLoader@3d4eac69 
-Loaded from file:/C:/Users/-/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
-java.vendor=Azul Systems, Inc.
-java.runtime.version=1.8.0_382-b05
-user.dir=C:\Users\-\Documents\NetBeansProjects\genesys-kernel
+Fri Mar 07 13:54:48 BRT 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0195-7187-ed2b-0000329103b8 
+on database directory C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel\target\arquivos\banco with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/C:/Users/usuario/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_202-b08
+user.dir=C:\Users\usuario\Documents\NetBeansProjects\genesys-kernel
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0

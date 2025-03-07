@@ -1,5 +1,6 @@
 package br.com.salomaotech.sistema.algoritmos;
 
+import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,50 +20,41 @@ public class BuscaCep {
      * Busca por dados de um CEP
      *
      * @param cep Número do CEP
-     * @return true conseguiu buscar o CEP
+     * @return true se conseguiu buscar o CEP com sucesso
      */
     public boolean buscar(String cep) {
-
-        String json;
 
         try {
 
             URL url = new URL("https://viacep.com.br/ws/" + cep + "/json");
             URLConnection urlConnection = url.openConnection();
-            BufferedReader br;
-            String[] arrayRetorno;
 
-            /* pega os dados da conexão */
-            try (InputStream is = urlConnection.getInputStream()) {
+            try (InputStream is = urlConnection.getInputStream(); BufferedReader br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
 
-                /* buffer */
-                br = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
                 StringBuilder jsonSb = new StringBuilder();
+                br.lines().forEach(jsonSb::append);
 
-                /* lê as linhas */
-                br.lines().forEach(l -> jsonSb.append(l.trim()));
-                json = jsonSb.toString();
+                // Converte a string JSON para um objeto JSONObject
+                JSONObject json = new JSONObject(jsonSb.toString());
 
-                /* pega os dados */
-                json = json.replaceAll("[{},:]", "");
-                json = json.replaceAll("\"", "\n");
-                arrayRetorno = new String[30];
-                arrayRetorno = json.split("\n");
+                // Verifica se o CEP é inválido (a API retorna "erro": true)
+                if (json.has("erro") && json.getBoolean("erro")) {
 
-                /* popula dados */
-                logradouro = arrayRetorno[7];
-                bairro = arrayRetorno[15];
-                cidade = arrayRetorno[19];
-                uf = arrayRetorno[23];
+                    return false;
+
+                }
+
+                // Acessa os dados diretamente do JSON
+                logradouro = json.optString("logradouro", "");
+                bairro = json.optString("bairro", "");
+                cidade = json.optString("localidade", "");
+                uf = json.optString("uf", "");
+
+                return true;
 
             }
 
-            /* fecha tudo o que estiver aberto */
-            br.close();
-
-            return true;
-
-        } catch (IOException | ArrayIndexOutOfBoundsException e) {
+        } catch (IOException e) {
 
             return false;
 

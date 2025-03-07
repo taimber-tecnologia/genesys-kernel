@@ -11,10 +11,10 @@ public class BuscaCepTest {
         BuscaCep cep = new BuscaCep();
 
         System.out.println("Testando classe BuscaCep metodo: buscar etapa 01");
-        assertEquals(true, cep.buscar("07042-090"));
+        assertTrue(cep.buscar("07042-090"));
 
         System.out.println("Testando classe BuscaCep metodo: buscar etapa 02");
-        assertEquals(true, cep.buscar("07042090"));
+        assertTrue(cep.buscar("07042090"));
 
     }
 
@@ -22,13 +22,10 @@ public class BuscaCepTest {
     public void testGetLogradouro() {
 
         BuscaCep cep = new BuscaCep();
+        cep.buscar("07042-090");
 
-        if (cep.buscar("07042-090")) {
-
-            System.out.println("Testando classe BuscaCep metodo: getLogradouro");
-            assertEquals(false, cep.getLogradouro().isEmpty());
-
-        }
+        System.out.println("Testando classe BuscaCep metodo: getLogradouro");
+        assertEquals("Rua Canadense", cep.getLogradouro());
 
     }
 
@@ -36,13 +33,10 @@ public class BuscaCepTest {
     public void testGetBairro() {
 
         BuscaCep cep = new BuscaCep();
+        cep.buscar("07042-090");
 
-        if (cep.buscar("07042-090")) {
-
-            System.out.println("Testando classe BuscaCep metodo: getBairro");
-            assertEquals(false, cep.getBairro().isEmpty());
-
-        }
+        System.out.println("Testando classe BuscaCep metodo: getBairro");
+        assertEquals("Vila Flora", cep.getBairro());
 
     }
 
@@ -50,13 +44,10 @@ public class BuscaCepTest {
     public void testGetCidade() {
 
         BuscaCep cep = new BuscaCep();
+        cep.buscar("07042-090");
 
-        if (cep.buscar("07042-090")) {
-
-            System.out.println("Testando classe BuscaCep metodo: getCidade");
-            assertEquals(false, cep.getCidade().isEmpty());
-
-        }
+        System.out.println("Testando classe BuscaCep metodo: getCidade");
+        assertEquals("Guarulhos", cep.getCidade());
 
     }
 
@@ -64,13 +55,10 @@ public class BuscaCepTest {
     public void testGetUf() {
 
         BuscaCep cep = new BuscaCep();
+        cep.buscar("07042-090");
 
-        if (cep.buscar("07042-090")) {
-
-            System.out.println("Testando classe BuscaCep metodo: getUf");
-            assertEquals(false, cep.getUf().isEmpty());
-
-        }
+        System.out.println("Testando classe BuscaCep metodo: getUf");
+        assertEquals("SP", cep.getUf());
 
     }
 
