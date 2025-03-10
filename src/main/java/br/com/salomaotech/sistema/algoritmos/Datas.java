@@ -2,6 +2,9 @@ package br.com.salomaotech.sistema.algoritmos;
 
 import com.toedter.calendar.JCalendar;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,6 +24,27 @@ public class Datas {
 
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             return formatter.format(calendar.getTime());
+
+        } catch (Exception ex) {
+
+            return null;
+
+        }
+
+    }
+
+    /**
+     * Converte um LocalDate para uma String no formato dd/MM/yyyy
+     *
+     * @param localDate
+     * @return
+     */
+    public static String localDateParaStringBr(LocalDate localDate) {
+
+        try {
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            return localDate.format(formatter);
 
         } catch (Exception ex) {
 
@@ -124,6 +148,27 @@ public class Datas {
         try {
 
             return new SimpleDateFormat("yyyy-MM-dd").format(data);
+
+        } catch (Exception ex) {
+
+            return null;
+
+        }
+
+    }
+
+    /**
+     * Converte um LocalTime para uma String no formato HH:mm
+     *
+     * @param localTime
+     * @return
+     */
+    public static String localTimeParaStringBr(LocalTime localTime) {
+
+        try {
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            return localTime.format(formatter);
 
         } catch (Exception ex) {
 

@@ -2,6 +2,8 @@ package br.com.salomaotech.sistema.algoritmos;
 
 import com.toedter.calendar.JCalendar;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import static java.util.Objects.isNull;
@@ -29,6 +31,19 @@ public class DatasTest {
 
         System.out.println("Testando classe Datas metodo: dateParaStringBr etapa 02");
         assertEquals(true, Datas.calendarParaStringBr(calendario1).equals("01/01/2022"));
+
+    }
+
+    @Test
+    public void testLocalDateParaStringBr() {
+
+        LocalDate data1 = LocalDate.of(1989, 9, 15);
+        System.out.println("Testando classe Datas metodo: localDateParaStringBr etapa 01");
+        assertEquals("15/09/1989", Datas.localDateParaStringBr(data1));
+
+        LocalDate data2 = LocalDate.of(2022, 1, 1);
+        System.out.println("Testando classe Datas metodo: localDateParaStringBr etapa 02");
+        assertEquals("01/01/2022", Datas.localDateParaStringBr(data2));
 
     }
 
@@ -128,6 +143,18 @@ public class DatasTest {
         System.out.println("Testando classe Datas metodo: calendarParaStringAnoMesDia etapa 04");
         assertEquals(true, isNull(Datas.calendarParaStringAnoMesDia(data4)));
 
+    }
+
+    @Test
+    public void testLocalTimeParaStringBr() {
+
+        LocalTime time1 = LocalTime.of(14, 30);
+        System.out.println("Testando classe Datas metodo: localTimeParaStringBr etapa 01");
+        assertEquals("14:30", Datas.localTimeParaStringBr(time1));
+
+        LocalTime time2 = LocalTime.of(8, 5);
+        System.out.println("Testando classe Datas metodo: localTimeParaStringBr etapa 02");
+        assertEquals("08:05", Datas.localTimeParaStringBr(time2));
     }
 
 }
