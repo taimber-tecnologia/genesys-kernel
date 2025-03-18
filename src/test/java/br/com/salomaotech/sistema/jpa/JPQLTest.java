@@ -2,6 +2,7 @@ package br.com.salomaotech.sistema.jpa;
 
 import java.util.Calendar;
 import static java.util.Objects.isNull;
+import javax.swing.JOptionPane;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -333,6 +334,20 @@ public class JPQLTest {
         jpql.addParametroIgual(chaveNome, "Teste");
         System.out.println("Testando classe JPQL metodo: construirSelect etapa 02");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nome='Teste'"));
+
+    }
+
+    @Test
+    public void testConstruirDelete() {
+
+        jpql = new JPQL(new ModeloDeTeste());
+        System.out.println("Testando classe JPQL método: construirDelete etapa 01");
+        assertEquals(true, jpql.construirDelete().equals("DELETE objeto FROM ModeloDeTeste objeto"));
+
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroIgual(chaveNome, "Teste");
+        System.out.println("Testando classe JPQL método: construirDelete etapa 02");
+        assertEquals(true, jpql.construirDelete().equals("DELETE objeto FROM ModeloDeTeste objeto WHERE objeto.nome='Teste'"));
 
     }
 

@@ -228,6 +228,13 @@ public class JPQL {
 
     }
 
+    public String construirDelete() {
+
+        String sqlParametros = "DELETE " + objetoDadosDoSelect + " FROM " + nomeTabela + " " + objetoDadosDoSelect + getCondicaoWhere();
+        return sqlParametros;
+
+    }
+
     public String construirSelectDistinct(String campo) {
 
         if (!ValidaStringIsEmpty.isEmpty(campo)) {
