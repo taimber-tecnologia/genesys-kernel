@@ -2,7 +2,6 @@ package br.com.salomaotech.sistema.jpa;
 
 import java.util.Calendar;
 import static java.util.Objects.isNull;
-import javax.swing.JOptionPane;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
