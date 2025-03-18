@@ -30,7 +30,7 @@ public class GerarPdf3Test {
             {"7", "8", "9"}
         };
 
-        pdf.addTabela(dados);
+        pdf.addTabela(dados, new Font(Font.FontFamily.COURIER, 12, Font.NORMAL));
 
         System.out.println("Testando classe GerarPdf3 metodo: gerar");
         assertEquals(true, pdf.gerar());

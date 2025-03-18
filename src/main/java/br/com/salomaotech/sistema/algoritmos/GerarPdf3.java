@@ -1,6 +1,7 @@
 package br.com.salomaotech.sistema.algoritmos;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
@@ -26,12 +27,11 @@ public class GerarPdf3 {
 
     public void addConteudo(Paragraph paragrafo) {
 
-        paragrafo.setAlignment(Element.ALIGN_CENTER);
         conteudoTexto.add(paragrafo);
 
     }
 
-    public void addTabela(String[][] dados) {
+    public void addTabela(String[][] dados, Font font) {
 
         if (dados.length == 0 || dados[0].length == 0) {
             return;
@@ -40,10 +40,16 @@ public class GerarPdf3 {
         PdfPTable tabela = new PdfPTable(dados[0].length);
         tabela.setHorizontalAlignment(Element.ALIGN_LEFT);
 
+        // Define a largura da tabela para ocupar 100% da largura da página
+        tabela.setWidthPercentage(100);
+
         for (String[] linha : dados) {
 
             for (String celula : linha) {
-                tabela.addCell(celula);
+
+                PdfPCell cell = new PdfPCell(new Phrase(celula, font));
+                tabela.addCell(cell);
+
             }
 
         }
