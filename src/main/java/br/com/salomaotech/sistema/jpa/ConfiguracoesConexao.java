@@ -7,6 +7,7 @@ import java.util.Properties;
 public class ConfiguracoesConexao {
 
     private final ArquivoPropriedade arquivoPropriedade;
+    private static final String PORTA_PADRAO = "3306";
 
     public ConfiguracoesConexao() {
 
@@ -26,12 +27,26 @@ public class ConfiguracoesConexao {
             String banco = propriedadesConexaoSalvas.getProperty("banco");
             String login = propriedadesConexaoSalvas.getProperty("login");
             String senha = propriedadesConexaoSalvas.getProperty("senha");
+            String porta = propriedadesConexaoSalvas.getProperty("porta");
+
+            // Define a porta a ser usada
+            String portaConexao;
+
+            if (ValidaStringIsEmpty.isEmpty(porta)) {
+
+                portaConexao = PORTA_PADRAO;
+
+            } else {
+
+                portaConexao = porta;
+
+            }
 
             if (!ValidaStringIsEmpty.isEmpty(servidor) && !ValidaStringIsEmpty.isEmpty(banco) && !ValidaStringIsEmpty.isEmpty(login) && !ValidaStringIsEmpty.isEmpty(senha)) {
 
                 /* popula as configurações */
                 propriedadesConexaoRetorno = new Properties();
-                propriedadesConexaoRetorno.put("javax.persistence.jdbc.url", "jdbc:mysql://" + servidor + ":3306" + "/" + banco);
+                propriedadesConexaoRetorno.put("javax.persistence.jdbc.url", "jdbc:mysql://" + servidor + ":" + portaConexao + "/" + banco);
                 propriedadesConexaoRetorno.put("javax.persistence.jdbc.user", login);
                 propriedadesConexaoRetorno.put("javax.persistence.jdbc.password", senha);
 
@@ -42,7 +57,6 @@ public class ConfiguracoesConexao {
                 propriedadesConexaoRetorno.put("hibernate.show_sql", "false");
                 propriedadesConexaoRetorno.put("hibernate.format_sql", "false");
                 propriedadesConexaoRetorno.put("hibernate.connection.charSet", "UTF-8");
-
             }
 
         } catch (NullPointerException ex) {
