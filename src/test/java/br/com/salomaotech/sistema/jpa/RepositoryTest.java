@@ -149,7 +149,15 @@ public class RepositoryTest {
         JPQL jpql;
         Map<String, Object> dados;
 
-        // Cenário 1 - Atualizar registros com nome igual
+        // Cenário 1 - Se o JPQL for null então não atualiza nada
+        simularCadastro();
+        jpql = null;
+        dados = new HashMap<>();
+        dados.put("nome", "Novo Nome 1");
+        dados.put("idade", 20);
+        assertEquals(0, repository.updateRegistros(dados, jpql));
+
+        // Cenário 2 - Atualizar registros com nome igual
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroIgual("nome", "Teste Nome 1");
@@ -157,7 +165,7 @@ public class RepositoryTest {
         dados.put("nome", "Novo Nome 1");
         assertEquals(1, repository.updateRegistros(dados, jpql));
 
-        // Cenário 2 - Atualizar registros com idade diferente
+        // Cenário 3 - Atualizar registros com idade diferente
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroDiferente("idade", 32);
@@ -165,7 +173,7 @@ public class RepositoryTest {
         dados.put("nome", "Nome Diferente");
         assertEquals(4, repository.updateRegistros(dados, jpql));
 
-        // Cenário 3 - Atualizar registros com nome contendo parte do valor
+        // Cenário 4 - Atualizar registros com nome contendo parte do valor
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroLike("nome", "Teste Nome");
@@ -173,7 +181,7 @@ public class RepositoryTest {
         dados.put("nome", "Nome Like Atualizado");
         assertEquals(5, repository.updateRegistros(dados, jpql));
 
-        // Cenário 4 - Atualizar registros com nascimento não nulo
+        // Cenário 5 - Atualizar registros com nascimento não nulo
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroNaoNulo("nascimento");
@@ -181,7 +189,7 @@ public class RepositoryTest {
         dados.put("nome", "Nome Não Nulo");
         assertEquals(5, repository.updateRegistros(dados, jpql));
 
-        // Cenário 5 - Atualizar registros com nascimento nulo
+        // Cenário 6 - Atualizar registros com nascimento nulo
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroNulo("nascimento");
@@ -189,7 +197,7 @@ public class RepositoryTest {
         dados.put("nome", "Nome Nulo");
         assertEquals(0, repository.updateRegistros(dados, jpql));
 
-        // Cenário 6 - Atualizar registros com idade maior ou igual
+        // Cenário 7 - Atualizar registros com idade maior ou igual
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroMaiorIgual("idade", 33);
@@ -197,7 +205,7 @@ public class RepositoryTest {
         dados.put("idade", 99);
         assertEquals(3, repository.updateRegistros(dados, jpql));
 
-        // Cenário 7 - Atualizar registros com idade menor ou igual
+        // Cenário 8 - Atualizar registros com idade menor ou igual
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroMenorIgual("idade", 32);
@@ -205,7 +213,7 @@ public class RepositoryTest {
         dados.put("idade", 10);
         assertEquals(2, repository.updateRegistros(dados, jpql));
 
-        // Cenário 8 - Atualizar registros com idade menor
+        // Cenário 9 - Atualizar registros com idade menor
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroMenor("idade", 34);
@@ -213,7 +221,7 @@ public class RepositoryTest {
         dados.put("idade", 20);
         assertEquals(3, repository.updateRegistros(dados, jpql));
 
-        // Cenário 9 - Atualizar registros com relação entre segundos de vida e idade
+        // Cenário 10 - Atualizar registros com relação entre segundos de vida e idade
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroCompararDuasChaves("segundosDeVida", "idade", ">");
@@ -221,7 +229,7 @@ public class RepositoryTest {
         dados.put("idade", 50);
         assertEquals(5, repository.updateRegistros(dados, jpql));
 
-        // Cenário 10 - Atualizar registros que atendem a múltiplas condições
+        // Cenário 11 - Atualizar registros que atendem a múltiplas condições
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroMaiorIgual("idade", 33);
@@ -230,7 +238,7 @@ public class RepositoryTest {
         dados.put("nome", "Nome Condicional");
         assertEquals(3, repository.updateRegistros(dados, jpql));
 
-        // Cenário 11 - Atualizar registros com ordem específica (DESC)
+        // Cenário 12 - Atualizar registros com ordem específica (DESC)
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addOrderBy("idade", "DESC");
@@ -238,7 +246,7 @@ public class RepositoryTest {
         dados.put("nome", "Nome Ordenado");
         assertEquals(5, repository.updateRegistros(dados, jpql));
 
-        // Cenário 12 - Atualizar registros com nome diferente de um valor específico
+        // Cenário 13 - Atualizar registros com nome diferente de um valor específico
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroDiferente("nome", "Teste Nome 3");
@@ -246,7 +254,7 @@ public class RepositoryTest {
         dados.put("nome", "Nome Diferente Condicional");
         assertEquals(4, repository.updateRegistros(dados, jpql));
 
-        // Cenário 13 - Atualizar registros com idade igual e comparação entre chaves
+        // Cenário 14 - Atualizar registros com idade igual e comparação entre chaves
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroIgual("idade", 34);
@@ -255,7 +263,7 @@ public class RepositoryTest {
         dados.put("nome", "Nome Específico e Comparado");
         assertEquals(1, repository.updateRegistros(dados, jpql));
 
-        // Cenário 14 - Atualizar registros com nome contendo substring em letras minúsculas
+        // Cenário 15 - Atualizar registros com nome contendo substring em letras minúsculas
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroLike("nome", "nome");
@@ -263,7 +271,7 @@ public class RepositoryTest {
         dados.put("nome", "Nome Com Substring");
         assertEquals(5, repository.updateRegistros(dados, jpql));
 
-        // Cenário 15 - Atualizar registros usando NOT NULL e condições combinadas
+        // Cenário 16 - Atualizar registros usando NOT NULL e condições combinadas
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroNaoNulo("segundosDeVida");
@@ -272,7 +280,7 @@ public class RepositoryTest {
         dados.put("nome", "Nome Condições Combinadas");
         assertEquals(5, repository.updateRegistros(dados, jpql));
 
-        // Cenário 16 - Atualizar registros com menos de dois valores combinados
+        // Cenário 17 - Atualizar registros com menos de dois valores combinados
         simularCadastro();
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroMenor("segundosDeVida", 1003);

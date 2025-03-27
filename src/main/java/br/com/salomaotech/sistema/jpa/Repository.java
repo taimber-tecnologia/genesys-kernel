@@ -200,6 +200,11 @@ public class Repository {
      */
     public int updateRegistros(Map<String, Object> dados, JPQL jpql) {
 
+        // Se o JPQL for null então não atualiza nada
+        if (isNull(jpql)) {
+            return 0;
+        }
+
         int linhasAfetadas = 0;
 
         try {
