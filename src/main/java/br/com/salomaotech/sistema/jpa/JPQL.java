@@ -98,7 +98,7 @@ public class JPQL {
 
     public void addParametroIgual(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
 
             colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "=", null));
 
@@ -108,7 +108,7 @@ public class JPQL {
 
     public void addParametroDiferente(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
 
             colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "!=", null));
 
@@ -118,7 +118,7 @@ public class JPQL {
 
     public void addParametroLike(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
 
             /* LOWER é para a sql não ter case sentive */
             String condicao = geraItemColunaPesquisa(chave, valor, " LIKE LOWER('%", "%')");
@@ -134,7 +134,7 @@ public class JPQL {
 
         if (!ValidaStringIsEmpty.isEmpty(chave)) {
 
-            colunasPesquisar.add(objetoDadosDoSelect + "." + chave + "!=null");
+            colunasPesquisar.add(objetoDadosDoSelect + "." + chave + " IS NOT NULL");
 
         }
 
@@ -144,7 +144,7 @@ public class JPQL {
 
         if (!ValidaStringIsEmpty.isEmpty(chave)) {
 
-            colunasPesquisar.add(objetoDadosDoSelect + "." + chave + "=null");
+            colunasPesquisar.add(objetoDadosDoSelect + "." + chave + " IS NULL");
 
         }
 
@@ -152,7 +152,7 @@ public class JPQL {
 
     public void addParametroMaiorIgual(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
 
             colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, ">=", null));
 
@@ -162,7 +162,7 @@ public class JPQL {
 
     public void addParametroMenorIgual(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
 
             colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "<=", null));
 
@@ -172,7 +172,7 @@ public class JPQL {
 
     public void addParametroMenor(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
 
             colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "<", null));
 
@@ -182,7 +182,7 @@ public class JPQL {
 
     public void addParametroCompararDuasChaves(String chaveA, String chaveB, String clausula) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chaveA) & !ValidaStringIsEmpty.isEmpty(chaveB) & !ValidaStringIsEmpty.isEmpty(clausula)) {
+        if (!ValidaStringIsEmpty.isEmpty(chaveA) && !ValidaStringIsEmpty.isEmpty(chaveB) && !ValidaStringIsEmpty.isEmpty(clausula)) {
 
             colunasPesquisar.add(objetoDadosDoSelect + "." + chaveA + " " + clausula + " " + objetoDadosDoSelect + "." + chaveB);
 
@@ -192,7 +192,7 @@ public class JPQL {
 
     public void addOrderBy(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) & !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
 
             colunasOrdenar.add(objetoDadosDoSelect + "." + chave + " " + valor);
 
@@ -230,7 +230,21 @@ public class JPQL {
 
     public String construirDelete() {
 
-        String sqlParametros = "DELETE " + objetoDadosDoSelect + " FROM " + nomeTabela + " " + objetoDadosDoSelect + getCondicaoWhere();
+        String sqlParametros;
+
+        if (!getCondicaoWhere().isEmpty()) {
+
+            sqlParametros = "DELETE FROM " + nomeTabela + getCondicaoWhere();
+
+            // No delete não se usa aliás por isto é removido abaixo
+            sqlParametros = sqlParametros.replace(objetoDadosDoSelect + ".", "");
+
+        } else {
+
+            sqlParametros = "DELETE FROM " + nomeTabela;
+
+        }
+
         return sqlParametros;
 
     }
@@ -256,6 +270,12 @@ public class JPQL {
             return null;
 
         }
+
+    }
+
+    public String getObjetoDadosDoSelect() {
+
+        return objetoDadosDoSelect;
 
     }
 

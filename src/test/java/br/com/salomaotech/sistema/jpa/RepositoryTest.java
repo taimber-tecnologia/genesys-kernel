@@ -1,8 +1,8 @@
 package br.com.salomaotech.sistema.jpa;
 
 import br.com.salomaotech.sistema.modelos.ModeloDeTeste;
+import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -11,6 +11,30 @@ public class RepositoryTest {
 
     private ModeloDeTeste modeloDeTeste = new ModeloDeTeste();
     private Repository repository = new Repository(modeloDeTeste);
+
+    private void simularCadastro() {
+
+        // Limpa a tabela antes do teste
+        repository.deleteTodos();
+
+        Calendar nascimento = Calendar.getInstance();
+        nascimento.set(Calendar.YEAR, 1989);
+        nascimento.set(Calendar.MONTH, Calendar.SEPTEMBER);
+        nascimento.set(Calendar.DAY_OF_MONTH, 15);
+
+        // Cria 5 registros de teste
+        for (int i = 1; i <= 5; i++) {
+
+            ModeloDeTeste modelo = new ModeloDeTeste();
+            modelo.setNome("Teste Nome " + i);
+            modelo.setIdade(30 + i);
+            modelo.setNascimento(nascimento);
+            modelo.setSegundosDeVida(1000L + i);
+            new Repository(modelo).save();
+
+        }
+
+    }
 
     @Test
     public void testSave() {
@@ -122,114 +146,139 @@ public class RepositoryTest {
     @Test
     public void testUpdateRegistros() {
 
-        // Limpa a tabela antes do teste
-        repository.deleteTodos();
+        JPQL jpql;
+        Map<String, Object> dados;
 
-        // Cria 5 registros de teste
-        for (int i = 1; i <= 5; i++) {
+        // Cenário 1 - Atualizar registros com nome igual
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroIgual("nome", "Teste Nome 1");
+        dados = new HashMap<>();
+        dados.put("nome", "Novo Nome 1");
+        assertEquals(1, repository.updateRegistros(dados, jpql));
 
-            ModeloDeTeste modelo = new ModeloDeTeste();
-            modelo.setNome("Teste " + i);
-            modelo.setIdade(20 + i);
-            new Repository(modelo).save();
+        // Cenário 2 - Atualizar registros com idade diferente
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroDiferente("idade", 32);
+        dados = new HashMap<>();
+        dados.put("nome", "Nome Diferente");
+        assertEquals(4, repository.updateRegistros(dados, jpql));
 
-        }
+        // Cenário 3 - Atualizar registros com nome contendo parte do valor
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroLike("nome", "Teste Nome");
+        dados = new HashMap<>();
+        dados.put("nome", "Nome Like Atualizado");
+        assertEquals(5, repository.updateRegistros(dados, jpql));
 
-        // Teste 1: Atualização sem WHERE (deve atualizar todos os registros)
-        Map<String, Object> dadosUpdate = new HashMap<>();
-        dadosUpdate.put("idade", 30);
+        // Cenário 4 - Atualizar registros com nascimento não nulo
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroNaoNulo("nascimento");
+        dados = new HashMap<>();
+        dados.put("nome", "Nome Não Nulo");
+        assertEquals(5, repository.updateRegistros(dados, jpql));
 
-        int linhasAfetadas = repository.updateRegistros(dadosUpdate, null);
-        System.out.println("Testando repository metodo: updateRegistros (sem WHERE)");
-        assertEquals(5, linhasAfetadas);
+        // Cenário 5 - Atualizar registros com nascimento nulo
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroNulo("nascimento");
+        dados = new HashMap<>();
+        dados.put("nome", "Nome Nulo");
+        assertEquals(0, repository.updateRegistros(dados, jpql));
 
-        // Verifica se todos foram atualizados
-        List<ModeloDeTeste> resultados = repository.getResults(new JPQL(modeloDeTeste).construirSelect());
+        // Cenário 6 - Atualizar registros com idade maior ou igual
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroMaiorIgual("idade", 33);
+        dados = new HashMap<>();
+        dados.put("idade", 99);
+        assertEquals(3, repository.updateRegistros(dados, jpql));
 
-        for (ModeloDeTeste modelo : resultados) {
+        // Cenário 7 - Atualizar registros com idade menor ou igual
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroMenorIgual("idade", 32);
+        dados = new HashMap<>();
+        dados.put("idade", 10);
+        assertEquals(2, repository.updateRegistros(dados, jpql));
 
-            assertEquals(30, modelo.getIdade());
+        // Cenário 8 - Atualizar registros com idade menor
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroMenor("idade", 34);
+        dados = new HashMap<>();
+        dados.put("idade", 20);
+        assertEquals(3, repository.updateRegistros(dados, jpql));
 
-        }
+        // Cenário 9 - Atualizar registros com relação entre segundos de vida e idade
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroCompararDuasChaves("segundosDeVida", "idade", ">");
+        dados = new HashMap<>();
+        dados.put("idade", 50);
+        assertEquals(5, repository.updateRegistros(dados, jpql));
 
-        // Teste 2: Atualização com WHERE simples
-        Map<String, RepositoryCondicaoWhere> condicoes = new HashMap<>();
-        condicoes.put("nome", new RepositoryCondicaoWhere("=", "Teste 3"));
+        // Cenário 10 - Atualizar registros que atendem a múltiplas condições
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroMaiorIgual("idade", 33);
+        jpql.addParametroNaoNulo("nascimento");
+        dados = new HashMap<>();
+        dados.put("nome", "Nome Condicional");
+        assertEquals(3, repository.updateRegistros(dados, jpql));
 
-        dadosUpdate.clear();
-        dadosUpdate.put("idade", 33);
-        dadosUpdate.put("segundosDeVida", 1000L);
+        // Cenário 11 - Atualizar registros com ordem específica (DESC)
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addOrderBy("idade", "DESC");
+        dados = new HashMap<>();
+        dados.put("nome", "Nome Ordenado");
+        assertEquals(5, repository.updateRegistros(dados, jpql));
 
-        linhasAfetadas = repository.updateRegistros(dadosUpdate, condicoes);
-        System.out.println("Testando repository metodo: updateRegistros (com WHERE simples)");
-        assertEquals(1, linhasAfetadas);
+        // Cenário 12 - Atualizar registros com nome diferente de um valor específico
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroDiferente("nome", "Teste Nome 3");
+        dados = new HashMap<>();
+        dados.put("nome", "Nome Diferente Condicional");
+        assertEquals(4, repository.updateRegistros(dados, jpql));
 
-        // Verifica se apenas o registro específico foi atualizado
-        ModeloDeTeste modeloAtualizado = (ModeloDeTeste) repository.getResults("SELECT m FROM ModeloDeTeste m WHERE m.nome = 'Teste 3'").get(0);
-        assertEquals(33, modeloAtualizado.getIdade());
-        assertEquals(1000L, modeloAtualizado.getSegundosDeVida());
+        // Cenário 13 - Atualizar registros com idade igual e comparação entre chaves
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroIgual("idade", 34);
+        jpql.addParametroCompararDuasChaves("segundosDeVida", "idade", ">");
+        dados = new HashMap<>();
+        dados.put("nome", "Nome Específico e Comparado");
+        assertEquals(1, repository.updateRegistros(dados, jpql));
 
-        // Teste 3: Atualização com múltiplas condições
-        Map<String, RepositoryCondicaoWhere> condicoesMultiplas = new HashMap<>();
-        condicoesMultiplas.put("idade", new RepositoryCondicaoWhere("=", 30));
-        condicoesMultiplas.put("segundosDeVida", new RepositoryCondicaoWhere("=", 0L));
+        // Cenário 14 - Atualizar registros com nome contendo substring em letras minúsculas
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroLike("nome", "nome");
+        dados = new HashMap<>();
+        dados.put("nome", "Nome Com Substring");
+        assertEquals(5, repository.updateRegistros(dados, jpql));
 
-        dadosUpdate.clear();
-        dadosUpdate.put("nome", "Atualizado");
+        // Cenário 15 - Atualizar registros usando NOT NULL e condições combinadas
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroNaoNulo("segundosDeVida");
+        jpql.addParametroMaiorIgual("idade", 31);
+        dados = new HashMap<>();
+        dados.put("nome", "Nome Condições Combinadas");
+        assertEquals(5, repository.updateRegistros(dados, jpql));
 
-        linhasAfetadas = repository.updateRegistros(dadosUpdate, condicoesMultiplas);
-        System.out.println("Testando repository metodo: updateRegistros (com WHERE múltiplo)");
-        assertEquals(4, linhasAfetadas); // 4 registros têm idade=30 e segundosDeVida=0
-
-        // Verifica se os registros corretos foram atualizados
-        resultados = repository.getResults("SELECT m FROM ModeloDeTeste m WHERE m.nome = 'Atualizado'");
-        assertEquals(4, resultados.size());
-
-        // Teste 4: Atualização com condição IS NULL
-        Map<String, RepositoryCondicaoWhere> condicaoNull = new HashMap<>();
-        condicaoNull.put("nome", new RepositoryCondicaoWhere("IS NULL", null));
-
-        dadosUpdate.clear();
-        dadosUpdate.put("idade", 50);
-
-        linhasAfetadas = repository.updateRegistros(dadosUpdate, condicaoNull);
-        System.out.println("Testando repository metodo: updateRegistros (com WHERE IS NULL)");
-        assertEquals(0, linhasAfetadas); // Nenhum registro deve ter nome = null
-
-        // Verifica se nenhum registro foi atualizado
-        resultados = repository.getResults("SELECT m FROM ModeloDeTeste m WHERE m.nome IS NULL");
-        assertEquals(0, resultados.size());
-
-        // Teste 5: Atualização com condição IS NULL para dois registros
-        // Adiciona dois registros com nome NULL
-        ModeloDeTeste modelo1 = new ModeloDeTeste();
-        modelo1.setNome(null);
-        modelo1.setIdade(22);
-        new Repository(modelo1).save();
-
-        ModeloDeTeste modelo2 = new ModeloDeTeste();
-        modelo2.setNome(null);
-        modelo2.setIdade(23);
-        new Repository(modelo2).save();
-
-        Map<String, RepositoryCondicaoWhere> condicaoNomeNull = new HashMap<>();
-        condicaoNomeNull.put("nome", new RepositoryCondicaoWhere("IS NULL", null));
-
-        dadosUpdate.clear();
-        dadosUpdate.put("idade", 40);
-
-        linhasAfetadas = repository.updateRegistros(dadosUpdate, condicaoNomeNull);
-        System.out.println("Testando repository metodo: updateRegistros (com WHERE IS NULL para nome NULL)");
-        assertEquals(2, linhasAfetadas); // Esperado 2 registros com nome NULL
-
-        // Verifica se os registros foram atualizados corretamente
-        resultados = repository.getResults("SELECT m FROM ModeloDeTeste m WHERE m.nome IS NULL");
-
-        for (ModeloDeTeste modelo : resultados) {
-
-            assertEquals(40, modelo.getIdade());
-
-        }
+        // Cenário 16 - Atualizar registros com menos de dois valores combinados
+        simularCadastro();
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroMenor("segundosDeVida", 1003);
+        dados = new HashMap<>();
+        dados.put("nome", "Nome Menos Valores");
+        assertEquals(2, repository.updateRegistros(dados, jpql));
 
     }
 

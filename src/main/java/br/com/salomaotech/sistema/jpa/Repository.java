@@ -1,5 +1,6 @@
 package br.com.salomaotech.sistema.jpa;
 
+import br.com.salomaotech.sistema.algoritmos.Datas;
 import br.com.salomaotech.sistema.patterns.Modelo;
 import java.util.List;
 import java.util.Map;
@@ -151,13 +152,53 @@ public class Repository {
     }
 
     /**
+     * Formata o valor conforme seu tipo, adicionando ou removendo apóstrofos.
+     * Se for uma data, converte para o formato 'Ano-Mês-Dia'.
+     *
+     * @param valor O valor a ser tratado.
+     * @return O valor formatado.
+     */
+    private String tratarValorUpdate(Object valor) {
+
+        String apostofro = "'";
+
+        switch (valor.getClass().getName()) {
+
+            case "java.lang.Integer":
+                apostofro = "";
+                break;
+
+            case "java.lang.Boolean":
+                apostofro = "";
+                break;
+
+            case "java.lang.Long":
+                apostofro = "";
+                break;
+
+            default:
+
+                /* valida se o valor é considerada é considerada uma data */
+                if (Datas.isObjetoData(valor)) {
+
+                    valor = Datas.calendarParaStringAnoMesDia(valor);
+
+                }
+
+        }
+
+        return apostofro + valor + apostofro;
+
+    }
+
+    /**
      * Atualiza registros com os dados e as condições se houverem
      *
      * @param dados
-     * @param condicoes
+     * @param jpql
      * @return
      */
-    public int updateRegistros(Map<String, Object> dados, Map<String, RepositoryCondicaoWhere> condicoes) {
+    public int updateRegistros(Map<String, Object> dados, JPQL jpql) {
 
         int linhasAfetadas = 0;
 
@@ -178,68 +219,33 @@ public class Repository {
                     setClause.append(", ");
                 }
 
-                setClause.append(entry.getKey()).append(" = ?");
+                // Se for null não há como fazer o tratamento do valor
+                if (isNull(entry.getValue())) {
 
-            }
+                    setClause.append(entry.getKey()).append(" = ").append(entry.getValue());
 
-            // Construir a parte WHERE (se houver condições para restringir os registros)
-            StringBuilder whereClause = new StringBuilder();
+                } else {
 
-            if (condicoes != null && !condicoes.isEmpty()) {
-
-                // Se existirem condições, inicia a cláusula WHERE
-                whereClause.append(" WHERE ");
-
-                // Itera sobre as condições para construir a cláusula WHERE
-                for (Map.Entry<String, RepositoryCondicaoWhere> entry : condicoes.entrySet()) {
-
-                    // Se não for a primeira condição, adiciona um "AND" para combinar as condições
-                    if (whereClause.length() > 7) {
-                        whereClause.append(" AND ");
-                    }
-
-                    // Obtém a condição do mapa
-                    RepositoryCondicaoWhere condicao = entry.getValue();
-
-                    // Caso contrário, utiliza o operador da condição e o valor fornecido
-                    whereClause.append(entry.getKey()).append(" ").append(condicao.getOperador()).append(" ?");
+                    String valor = tratarValorUpdate(entry.getValue());
+                    setClause.append(entry.getKey()).append(" = ").append(valor);
 
                 }
 
             }
 
-            // Criar a query SQL nativa com as cláusulas SET e WHERE (se houver)
-            String sql = "UPDATE " + modelo.getClass().getSimpleName() + " SET " + setClause + whereClause;
-            Query query = manager.createNativeQuery(sql);
+            // SQL
+            StringBuilder sql = new StringBuilder();
+            sql.append("UPDATE ")
+                    .append(modelo.getClass().getSimpleName())
+                    .append(" AS ")
+                    .append(jpql.getObjetoDadosDoSelect())
+                    .append(" SET ")
+                    .append(setClause)
+                    .append(jpql.getCondicaoWhere());
 
-            // Definir os parâmetros SET para a query
-            int index = 1;
-
-            // Itera sobre os dados e define os parâmetros na query
-            for (Map.Entry<String, Object> entry : dados.entrySet()) {
-
-                query.setParameter(index++, entry.getValue());
-
-            }
-
-            // Definir os parâmetros WHERE (se houver)
-            if (condicoes != null && !condicoes.isEmpty()) {
-
-                // Itera sobre as condições e define os parâmetros na query
-                for (Map.Entry<String, RepositoryCondicaoWhere> entry : condicoes.entrySet()) {
-
-                    // Se o valor da condição não for null, define o parâmetro correspondente
-                    if (entry.getValue().getValor() != null) {
-
-                        query.setParameter(index++, entry.getValue().getValor());
-
-                    }
-
-                }
-
-            }
-
+            Query query = manager.createQuery(sql.toString());
             linhasAfetadas = query.executeUpdate();
+
             tx.commit();
             manager.close();
 

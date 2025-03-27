@@ -119,22 +119,22 @@ public class JPQLTest {
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroNaoNulo(chaveNome);
         System.out.println("Testando classe JPQL metodo: addParametroNaoNulo etapa 01");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nome!=null"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nome IS NOT NULL"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroNaoNulo(chaveIdade);
         System.out.println("Testando classe JPQL metodo: addParametroNaoNulo etapa 02");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.idade!=null"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.idade IS NOT NULL"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroNaoNulo(chaveNascimento);
         System.out.println("Testando classe JPQL metodo: addParametroNaoNulo etapa 03");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento!=null"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento IS NOT NULL"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroNaoNulo(chaveSegundosDeVida);
         System.out.println("Testando classe JPQL metodo: addParametroNaoNulo etapa 04");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida!=null"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida IS NOT NULL"));
 
     }
 
@@ -144,22 +144,22 @@ public class JPQLTest {
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroNulo(chaveNome);
         System.out.println("Testando classe JPQL metodo: addParametroNulo etapa 01");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nome=null"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nome IS NULL"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroNulo(chaveIdade);
         System.out.println("Testando classe JPQL metodo: addParametroNulo etapa 02");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.idade=null"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.idade IS NULL"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroNulo(chaveNascimento);
         System.out.println("Testando classe JPQL metodo: addParametroNulo etapa 03");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento=null"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nascimento IS NULL"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroNulo(chaveSegundosDeVida);
         System.out.println("Testando classe JPQL metodo: addParametroNulo etapa 04");
-        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida=null"));
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida IS NULL"));
 
     }
 
@@ -326,14 +326,31 @@ public class JPQLTest {
     @Test
     public void testConstruirSelect() {
 
+        // Teste básico de SELECT sem condições
         jpql = new JPQL(new ModeloDeTeste());
-        System.out.println("Testando classe JPQL metodo: construirSelect etapa 01");
+        System.out.println("Testando classe JPQL método: construirSelect etapa 01");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto"));
 
+        // Teste com um parâmetro de condição
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroIgual(chaveNome, "Teste");
-        System.out.println("Testando classe JPQL metodo: construirSelect etapa 02");
+        System.out.println("Testando classe JPQL método: construirSelect etapa 02");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nome='Teste'"));
+
+        // Teste com múltiplas condições
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroIgual(chaveNome, "Teste");
+        jpql.addParametroIgual(chaveIdade, 25);
+        System.out.println("Testando classe JPQL método: construirSelect etapa 03");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nome='Teste' AND objeto.idade=25"));
+
+        // Teste com múltiplas condições incluindo data
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroIgual(chaveNome, "Teste");
+        jpql.addParametroIgual(chaveIdade, 25);
+        jpql.addParametroIgual(chaveNascimento, nascimento);
+        System.out.println("Testando classe JPQL método: construirSelect etapa 04");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nome='Teste' AND objeto.idade=25 AND objeto.nascimento='1989-09-15'"));
 
     }
 
@@ -342,12 +359,25 @@ public class JPQLTest {
 
         jpql = new JPQL(new ModeloDeTeste());
         System.out.println("Testando classe JPQL método: construirDelete etapa 01");
-        assertEquals(true, jpql.construirDelete().equals("DELETE objeto FROM ModeloDeTeste objeto"));
+        assertEquals(true, jpql.construirDelete().equals("DELETE FROM ModeloDeTeste"));
 
         jpql = new JPQL(new ModeloDeTeste());
         jpql.addParametroIgual(chaveNome, "Teste");
         System.out.println("Testando classe JPQL método: construirDelete etapa 02");
-        assertEquals(true, jpql.construirDelete().equals("DELETE objeto FROM ModeloDeTeste objeto WHERE objeto.nome='Teste'"));
+        assertEquals(true, jpql.construirDelete().equals("DELETE FROM ModeloDeTeste WHERE nome='Teste'"));
+
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroIgual(chaveNome, "Teste");
+        jpql.addParametroIgual(chaveIdade, 25000L);
+        System.out.println("Testando classe JPQL método: construirDelete etapa 03");
+        assertEquals(true, jpql.construirDelete().equals("DELETE FROM ModeloDeTeste WHERE nome='Teste' AND idade=25000"));
+
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroIgual(chaveNome, "Teste");
+        jpql.addParametroIgual(chaveIdade, 25000L);
+        jpql.addParametroIgual(chaveNascimento, nascimento);
+        System.out.println("Testando classe JPQL método: construirDelete etapa 04");
+        assertEquals(true, jpql.construirDelete().equals("DELETE FROM ModeloDeTeste WHERE nome='Teste' AND idade=25000 AND nascimento='1989-09-15'"));
 
     }
 
@@ -373,6 +403,25 @@ public class JPQLTest {
         jpql = new JPQL(new ModeloDeTeste());
         System.out.println("Testando classe JPQL metodo: construirSelectDistinct etapa 04");
         assertEquals(true, isNull(jpql.construirSelectDistinct("")));
+
+    }
+
+    @Test
+    public void testGetObjetoDadosDoSelect() {
+
+        jpql = new JPQL(new ModeloDeTeste());
+        System.out.println("Testando classe JPQL metodo: getObjetoDadosDoSelect etapa 01");
+        assertEquals("objeto", jpql.getObjetoDadosDoSelect());
+
+        // Verifica se o objeto retornado não é nulo
+        System.out.println("Testando classe JPQL metodo: getObjetoDadosDoSelect etapa 02");
+        assertNotNull(jpql.getObjetoDadosDoSelect());
+
+        // Verifica se o valor retornado é sempre o mesmo para a mesma instância
+        System.out.println("Testando classe JPQL metodo: getObjetoDadosDoSelect etapa 03");
+        String primeiroRetorno = jpql.getObjetoDadosDoSelect();
+        String segundoRetorno = jpql.getObjetoDadosDoSelect();
+        assertEquals(primeiroRetorno, segundoRetorno);
 
     }
 
