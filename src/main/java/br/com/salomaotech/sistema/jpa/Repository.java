@@ -153,11 +153,11 @@ public class Repository {
     /**
      * Atualiza registros com os dados e as condições se houverem
      *
-     * @param dados Dados
-     * @param condicao Condição se houver
-     * @return Retorna o número de linhas afetadas
+     * @param dados
+     * @param condicoes
+     * @return
      */
-    public int updateRegistros(Map<String, Object> dados, Map<String, Object> condicao) {
+    public int updateRegistros(Map<String, Object> dados, Map<String, RepositoryCondicaoWhere> condicoes) {
 
         int linhasAfetadas = 0;
 
@@ -167,11 +167,13 @@ public class Repository {
             EntityTransaction tx = manager.getTransaction();
             tx.begin();
 
-            // Construir a parte SET da query
+            // Construir a parte SET da query (onde os dados serão atualizados)
             StringBuilder setClause = new StringBuilder();
 
+            // Itera sobre o map de dados para montar a cláusula SET da SQL
             for (Map.Entry<String, Object> entry : dados.entrySet()) {
 
+                // Se não for o primeiro parâmetro, adiciona uma vírgula para separar os campos
                 if (setClause.length() > 0) {
                     setClause.append(", ");
                 }
@@ -180,32 +182,40 @@ public class Repository {
 
             }
 
-            // Construir a parte WHERE (se houver condições)
+            // Construir a parte WHERE (se houver condições para restringir os registros)
             StringBuilder whereClause = new StringBuilder();
 
-            if (condicao != null && !condicao.isEmpty()) {
+            if (condicoes != null && !condicoes.isEmpty()) {
 
+                // Se existirem condições, inicia a cláusula WHERE
                 whereClause.append(" WHERE ");
 
-                for (Map.Entry<String, Object> entry : condicao.entrySet()) {
+                // Itera sobre as condições para construir a cláusula WHERE
+                for (Map.Entry<String, RepositoryCondicaoWhere> entry : condicoes.entrySet()) {
 
+                    // Se não for a primeira condição, adiciona um "AND" para combinar as condições
                     if (whereClause.length() > 7) {
                         whereClause.append(" AND ");
                     }
 
-                    whereClause.append(entry.getKey()).append(" = ?");
+                    // Obtém a condição do mapa
+                    RepositoryCondicaoWhere condicao = entry.getValue();
+
+                    // Caso contrário, utiliza o operador da condição e o valor fornecido
+                    whereClause.append(entry.getKey()).append(" ").append(condicao.getOperador()).append(" ?");
 
                 }
 
             }
 
-            // Criar a query SQL nativa
+            // Criar a query SQL nativa com as cláusulas SET e WHERE (se houver)
             String sql = "UPDATE " + modelo.getClass().getSimpleName() + " SET " + setClause + whereClause;
             Query query = manager.createNativeQuery(sql);
 
-            // Definir os parâmetros SET
+            // Definir os parâmetros SET para a query
             int index = 1;
 
+            // Itera sobre os dados e define os parâmetros na query
             for (Map.Entry<String, Object> entry : dados.entrySet()) {
 
                 query.setParameter(index++, entry.getValue());
@@ -213,11 +223,17 @@ public class Repository {
             }
 
             // Definir os parâmetros WHERE (se houver)
-            if (condicao != null && !condicao.isEmpty()) {
+            if (condicoes != null && !condicoes.isEmpty()) {
 
-                for (Map.Entry<String, Object> entry : condicao.entrySet()) {
+                // Itera sobre as condições e define os parâmetros na query
+                for (Map.Entry<String, RepositoryCondicaoWhere> entry : condicoes.entrySet()) {
 
-                    query.setParameter(index++, entry.getValue());
+                    // Se o valor da condição não for null, define o parâmetro correspondente
+                    if (entry.getValue().getValor() != null) {
+
+                        query.setParameter(index++, entry.getValue().getValor());
+
+                    }
 
                 }
 

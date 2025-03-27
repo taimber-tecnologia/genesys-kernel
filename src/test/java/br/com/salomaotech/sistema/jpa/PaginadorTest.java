@@ -1,5 +1,6 @@
 package br.com.salomaotech.sistema.jpa;
 
+import br.com.salomaotech.sistema.modelos.ModeloDeTeste;
 import javax.swing.JComboBox;
 import org.junit.Test;
 import static org.junit.Assert.*;

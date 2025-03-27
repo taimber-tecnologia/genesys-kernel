@@ -1,4 +1,4 @@
-package br.com.salomaotech.sistema.jpa;
+package br.com.salomaotech.sistema.modelos;
 
 import java.util.Calendar;
 import static java.util.Objects.isNull;

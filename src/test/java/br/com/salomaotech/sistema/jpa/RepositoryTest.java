@@ -1,5 +1,6 @@
 package br.com.salomaotech.sistema.jpa;
 
+import br.com.salomaotech.sistema.modelos.ModeloDeTeste;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -144,6 +145,7 @@ public class RepositoryTest {
 
         // Verifica se todos foram atualizados
         List<ModeloDeTeste> resultados = repository.getResults(new JPQL(modeloDeTeste).construirSelect());
+
         for (ModeloDeTeste modelo : resultados) {
 
             assertEquals(30, modelo.getIdade());
@@ -151,14 +153,14 @@ public class RepositoryTest {
         }
 
         // Teste 2: Atualização com WHERE simples
-        Map<String, Object> condicao = new HashMap<>();
-        condicao.put("nome", "Teste 3");
+        Map<String, RepositoryCondicaoWhere> condicoes = new HashMap<>();
+        condicoes.put("nome", new RepositoryCondicaoWhere("=", "Teste 3"));
 
         dadosUpdate.clear();
         dadosUpdate.put("idade", 33);
         dadosUpdate.put("segundosDeVida", 1000L);
 
-        linhasAfetadas = repository.updateRegistros(dadosUpdate, condicao);
+        linhasAfetadas = repository.updateRegistros(dadosUpdate, condicoes);
         System.out.println("Testando repository metodo: updateRegistros (com WHERE simples)");
         assertEquals(1, linhasAfetadas);
 
@@ -168,20 +170,66 @@ public class RepositoryTest {
         assertEquals(1000L, modeloAtualizado.getSegundosDeVida());
 
         // Teste 3: Atualização com múltiplas condições
-        Map<String, Object> condicaoMultipla = new HashMap<>();
-        condicaoMultipla.put("idade", 30);
-        condicaoMultipla.put("segundosDeVida", 0L);
+        Map<String, RepositoryCondicaoWhere> condicoesMultiplas = new HashMap<>();
+        condicoesMultiplas.put("idade", new RepositoryCondicaoWhere("=", 30));
+        condicoesMultiplas.put("segundosDeVida", new RepositoryCondicaoWhere("=", 0L));
 
         dadosUpdate.clear();
         dadosUpdate.put("nome", "Atualizado");
 
-        linhasAfetadas = repository.updateRegistros(dadosUpdate, condicaoMultipla);
+        linhasAfetadas = repository.updateRegistros(dadosUpdate, condicoesMultiplas);
         System.out.println("Testando repository metodo: updateRegistros (com WHERE múltiplo)");
-        assertEquals(4, linhasAfetadas); // 4 registros tem idade=30 e segundosDeVida=0
+        assertEquals(4, linhasAfetadas); // 4 registros têm idade=30 e segundosDeVida=0
 
         // Verifica se os registros corretos foram atualizados
         resultados = repository.getResults("SELECT m FROM ModeloDeTeste m WHERE m.nome = 'Atualizado'");
         assertEquals(4, resultados.size());
+
+        // Teste 4: Atualização com condição IS NULL
+        Map<String, RepositoryCondicaoWhere> condicaoNull = new HashMap<>();
+        condicaoNull.put("nome", new RepositoryCondicaoWhere("IS NULL", null));
+
+        dadosUpdate.clear();
+        dadosUpdate.put("idade", 50);
+
+        linhasAfetadas = repository.updateRegistros(dadosUpdate, condicaoNull);
+        System.out.println("Testando repository metodo: updateRegistros (com WHERE IS NULL)");
+        assertEquals(0, linhasAfetadas); // Nenhum registro deve ter nome = null
+
+        // Verifica se nenhum registro foi atualizado
+        resultados = repository.getResults("SELECT m FROM ModeloDeTeste m WHERE m.nome IS NULL");
+        assertEquals(0, resultados.size());
+
+        // Teste 5: Atualização com condição IS NULL para dois registros
+        // Adiciona dois registros com nome NULL
+        ModeloDeTeste modelo1 = new ModeloDeTeste();
+        modelo1.setNome(null);
+        modelo1.setIdade(22);
+        new Repository(modelo1).save();
+
+        ModeloDeTeste modelo2 = new ModeloDeTeste();
+        modelo2.setNome(null);
+        modelo2.setIdade(23);
+        new Repository(modelo2).save();
+
+        Map<String, RepositoryCondicaoWhere> condicaoNomeNull = new HashMap<>();
+        condicaoNomeNull.put("nome", new RepositoryCondicaoWhere("IS NULL", null));
+
+        dadosUpdate.clear();
+        dadosUpdate.put("idade", 40);
+
+        linhasAfetadas = repository.updateRegistros(dadosUpdate, condicaoNomeNull);
+        System.out.println("Testando repository metodo: updateRegistros (com WHERE IS NULL para nome NULL)");
+        assertEquals(2, linhasAfetadas); // Esperado 2 registros com nome NULL
+
+        // Verifica se os registros foram atualizados corretamente
+        resultados = repository.getResults("SELECT m FROM ModeloDeTeste m WHERE m.nome IS NULL");
+
+        for (ModeloDeTeste modelo : resultados) {
+
+            assertEquals(40, modelo.getIdade());
+
+        }
 
     }
 

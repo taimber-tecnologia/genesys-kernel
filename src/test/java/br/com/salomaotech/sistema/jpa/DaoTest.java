@@ -1,5 +1,6 @@
 package br.com.salomaotech.sistema.jpa;
 
+import br.com.salomaotech.sistema.modelos.ModeloDeTeste;
 import static java.util.Objects.isNull;
 import org.junit.Test;
 import static org.junit.Assert.*;

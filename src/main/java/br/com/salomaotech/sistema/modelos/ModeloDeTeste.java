@@ -1,4 +1,4 @@
-package br.com.salomaotech.sistema.jpa;
+package br.com.salomaotech.sistema.modelos;
 
 import br.com.salomaotech.sistema.patterns.Modelo;
 import java.io.Serializable;

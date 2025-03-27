@@ -1,5 +1,6 @@
 package br.com.salomaotech.sistema.jpa;
 
+import br.com.salomaotech.sistema.modelos.ModeloDeTeste;
 import java.util.Calendar;
 import static java.util.Objects.isNull;
 import org.junit.Test;
