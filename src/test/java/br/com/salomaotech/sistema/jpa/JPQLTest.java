@@ -1,6 +1,7 @@
 package br.com.salomaotech.sistema.jpa;
 
 import br.com.salomaotech.sistema.modelos.ModeloDeTeste;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import static java.util.Objects.isNull;
 import org.junit.Test;
@@ -13,7 +14,9 @@ public class JPQLTest {
     private final String chaveIdade = "idade";
     private final String chaveNascimento = "nascimento";
     private final String chaveSegundosDeVida = "segundosDeVida";
+    private final String chaveAltura = "altura";
     private final Calendar nascimento = Calendar.getInstance();
+    private final BigDecimal altura = new BigDecimal(1.75);
 
     public JPQLTest() {
 
@@ -51,6 +54,11 @@ public class JPQLTest {
         System.out.println("Testando classe JPQL metodo: addParametroIgual etapa 05");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida=9223372036854775807"));
 
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroIgual(chaveAltura, altura);
+        System.out.println("Testando classe JPQL metodo: addParametroIgual etapa 06");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.altura=1.75"));
+
     }
 
     @Test
@@ -80,6 +88,11 @@ public class JPQLTest {
         jpql.addParametroDiferente(chaveSegundosDeVida, 9223372036854775807L);
         System.out.println("Testando classe JPQL metodo: addParametroDiferente etapa 05");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida!=9223372036854775807"));
+
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroDiferente(chaveAltura, altura);
+        System.out.println("Testando classe JPQL metodo: addParametroDiferente etapa 06");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.altura!=1.75"));
 
     }
 
@@ -111,6 +124,11 @@ public class JPQLTest {
         System.out.println("Testando classe JPQL metodo: addParametroLike etapa 05");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE LOWER(objeto.segundosDeVida) LIKE LOWER('%9223372036854775807%')"));
 
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroLike(chaveAltura, altura);
+        System.out.println("Testando classe JPQL metodo: addParametroLike etapa 06");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE LOWER(objeto.altura) LIKE LOWER('%1.75%')"));
+
     }
 
     @Test
@@ -136,6 +154,11 @@ public class JPQLTest {
         System.out.println("Testando classe JPQL metodo: addParametroNaoNulo etapa 04");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida IS NOT NULL"));
 
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroNaoNulo(chaveAltura);
+        System.out.println("Testando classe JPQL metodo: addParametroNaoNulo etapa 05");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.altura IS NOT NULL"));
+
     }
 
     @Test
@@ -160,6 +183,11 @@ public class JPQLTest {
         jpql.addParametroNulo(chaveSegundosDeVida);
         System.out.println("Testando classe JPQL metodo: addParametroNulo etapa 04");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida IS NULL"));
+
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroNulo(chaveAltura);
+        System.out.println("Testando classe JPQL metodo: addParametroNulo etapa 05");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.altura IS NULL"));
 
     }
 
@@ -191,6 +219,11 @@ public class JPQLTest {
         System.out.println("Testando classe JPQL metodo: addParametroMaiorIgual etapa 05");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida>=9223372036854775807"));
 
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroMaiorIgual(chaveAltura, altura);
+        System.out.println("Testando classe JPQL metodo: addParametroMaiorIgual etapa 06");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.altura>=1.75"));
+
     }
 
     @Test
@@ -221,6 +254,11 @@ public class JPQLTest {
         System.out.println("Testando classe JPQL metodo: addParametroMenorIgual etapa 05");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida<=9223372036854775807"));
 
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroMenorIgual(chaveAltura, altura);
+        System.out.println("Testando classe JPQL metodo: addParametroMenorIgual etapa 06");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.altura<=1.75"));
+
     }
 
     @Test
@@ -250,6 +288,11 @@ public class JPQLTest {
         jpql.addParametroMenor(chaveSegundosDeVida, 9223372036854775807L);
         System.out.println("Testando classe JPQL metodo: addParametroMenor etapa 05");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.segundosDeVida<9223372036854775807"));
+
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroMenor(chaveAltura, altura);
+        System.out.println("Testando classe JPQL metodo: addParametroMenor etapa 06");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.altura<1.75"));
 
     }
 
@@ -290,6 +333,11 @@ public class JPQLTest {
         System.out.println("Testando classe JPQL metodo: addParametroCompararDuasChaves etapa 07");
         assertEquals(true, jpql.getCondicaoWhere().equals(" WHERE objeto.chaveA = objeto.chaveB"));
 
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroCompararDuasChaves("alturaA", "alturaB", ">");
+        System.out.println("Testando classe JPQL metodo: addParametroCompararDuasChaves etapa 08");
+        assertEquals(true, jpql.getCondicaoWhere().equals(" WHERE objeto.alturaA > objeto.alturaB"));
+
     }
 
     @Test
@@ -307,6 +355,12 @@ public class JPQLTest {
         System.out.println("Testando classe JPQL metodo: addOrderBy etapa 02");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto ORDER BY objeto.nome DESC"));
 
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addOrderBy(chaveAltura, "ASC");
+        System.out.println(jpql.construirSelect());
+        System.out.println("Testando classe JPQL metodo: addOrderBy etapa 03");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto ORDER BY objeto.altura ASC"));
+
     }
 
     @Test
@@ -320,6 +374,11 @@ public class JPQLTest {
         jpql.addParametroIgual(chaveNome, "Teste");
         System.out.println("Testando classe JPQL metodo: getCondicaoWhere etapa 02");
         assertEquals(true, jpql.getCondicaoWhere().equals(" WHERE objeto.nome='Teste'"));
+
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroIgual(chaveAltura, altura);
+        System.out.println("Testando classe JPQL metodo: getCondicaoWhere etapa 03");
+        assertEquals(true, jpql.getCondicaoWhere().equals(" WHERE objeto.altura=1.75"));
 
     }
 
@@ -352,6 +411,13 @@ public class JPQLTest {
         System.out.println("Testando classe JPQL método: construirSelect etapa 04");
         assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nome='Teste' AND objeto.idade=25 AND objeto.nascimento='1989-09-15'"));
 
+        // Teste com altura (BigDecimal)
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroIgual(chaveNome, "Teste");
+        jpql.addParametroIgual(chaveAltura, altura);
+        System.out.println("Testando classe JPQL método: construirSelect etapa 05");
+        assertEquals(true, jpql.construirSelect().equals("SELECT objeto FROM ModeloDeTeste objeto WHERE objeto.nome='Teste' AND objeto.altura=1.75"));
+
     }
 
     @Test
@@ -379,6 +445,12 @@ public class JPQLTest {
         System.out.println("Testando classe JPQL método: construirDelete etapa 04");
         assertEquals(true, jpql.construirDelete().equals("DELETE FROM ModeloDeTeste WHERE nome='Teste' AND idade=25000 AND nascimento='1989-09-15'"));
 
+        jpql = new JPQL(new ModeloDeTeste());
+        jpql.addParametroIgual(chaveNome, "Teste");
+        jpql.addParametroIgual(chaveAltura, altura);
+        System.out.println("Testando classe JPQL método: construirDelete etapa 05");
+        assertEquals(true, jpql.construirDelete().equals("DELETE FROM ModeloDeTeste WHERE nome='Teste' AND altura=1.75"));
+
     }
 
     @Test
@@ -403,6 +475,11 @@ public class JPQLTest {
         jpql = new JPQL(new ModeloDeTeste());
         System.out.println("Testando classe JPQL metodo: construirSelectDistinct etapa 04");
         assertEquals(true, isNull(jpql.construirSelectDistinct("")));
+
+        query = "SELECT p FROM ModeloDeTeste p WHERE p.id IN (SELECT MAX(p2.id) FROM ModeloDeTeste p2 GROUP BY p2.altura) ORDER BY p.altura ASC";
+        jpql = new JPQL(new ModeloDeTeste());
+        System.out.println("Testando classe JPQL metodo: construirSelectDistinct etapa 05");
+        assertEquals(true, jpql.construirSelectDistinct("altura").equals(query));
 
     }
 

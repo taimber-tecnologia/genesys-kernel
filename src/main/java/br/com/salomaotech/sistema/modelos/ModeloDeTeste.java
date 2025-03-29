@@ -2,6 +2,7 @@ package br.com.salomaotech.sistema.modelos;
 
 import br.com.salomaotech.sistema.patterns.Modelo;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,7 @@ public class ModeloDeTeste implements Modelo, Serializable {
     private Calendar nascimento;
 
     private long segundosDeVida;
+    private BigDecimal altura;
 
     @Override
     public long getId() {
@@ -65,6 +67,14 @@ public class ModeloDeTeste implements Modelo, Serializable {
 
     public void setSegundosDeVida(long segundosDeVida) {
         this.segundosDeVida = segundosDeVida;
+    }
+
+    public BigDecimal getAltura() {
+        return altura;
+    }
+
+    public void setAltura(BigDecimal altura) {
+        this.altura = altura;
     }
 
 }

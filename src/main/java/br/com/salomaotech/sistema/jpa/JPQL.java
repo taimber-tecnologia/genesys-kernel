@@ -41,6 +41,10 @@ public class JPQL {
                 apostofro = "";
                 break;
 
+            case "java.math.BigDecimal":
+                apostofro = "";
+                break;
+
             default:
 
                 /* valida se o valor é considerada é considerada uma data */

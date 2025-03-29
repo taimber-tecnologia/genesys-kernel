@@ -1,5 +1,6 @@
 package br.com.salomaotech.sistema.modelos;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 import static java.util.Objects.isNull;
 import org.junit.Test;
@@ -101,6 +102,31 @@ public class ModeloDeTesteTest {
 
         System.out.println("Testando classe ModeloDeTeste metodo: setSegundosDeVida");
         assertEquals(true, modeloDeTeste.getSegundosDeVida() == segundosDeVida);
+
+    }
+
+    @Test
+    public void testGetAltura() {
+
+        System.out.println("Testando classe ModeloDeTeste metodo: getAltura");
+        assertEquals(true, isNull(modeloDeTeste.getAltura()));
+
+    }
+
+    @Test
+    public void testSetAltura() {
+
+        // Etapa 1 - Teste com valor em String
+        System.out.println("Testando classe ModeloDeTeste metodo: setAltura - Etapa 1 (valor String)");
+        BigDecimal alturaString = new BigDecimal("1.75");
+        modeloDeTeste.setAltura(alturaString);
+        assertEquals(true, modeloDeTeste.getAltura().equals(alturaString));
+
+        // Etapa 2 - Teste com valor numérico
+        System.out.println("Testando classe ModeloDeTeste metodo: setAltura - Etapa 2 (valor numérico)");
+        BigDecimal alturaNumero = new BigDecimal(1.75);
+        modeloDeTeste.setAltura(alturaNumero);
+        assertEquals(true, modeloDeTeste.getAltura().equals(alturaNumero));
 
     }
 
