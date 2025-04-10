@@ -3,22 +3,22 @@ package br.com.salomaotech.sistema.algoritmos;
 public class ValidaStringIsEmpty {
 
     /**
-     * Valida se uma String está vazia
+     * Valida se um objeto é uma String vazia ou um objeto nulo
      *
-     * @param valor String
-     * @return true a String é vazia
+     * @param valor Object
+     * @return true se for String vazia ou objeto nulo
      */
-    public static boolean isEmpty(String valor) {
+    public static boolean isEmpty(Object valor) {
 
-        try {
-
-            return valor.length() == 0;
-
-        } catch (Exception ex) {
-
+        if (valor == null) {
             return true;
-
         }
+
+        if (valor instanceof String) {
+            return ((String) valor).isEmpty();
+        }
+
+        return false;
 
     }
 

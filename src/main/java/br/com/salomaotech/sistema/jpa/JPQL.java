@@ -102,7 +102,7 @@ public class JPQL {
 
     public void addParametroIgual(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !ValidaStringIsEmpty.isEmpty(valor)) {
 
             colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "=", null));
 
@@ -112,7 +112,7 @@ public class JPQL {
 
     public void addParametroDiferente(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !ValidaStringIsEmpty.isEmpty(valor)) {
 
             colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "!=", null));
 
@@ -122,7 +122,7 @@ public class JPQL {
 
     public void addParametroLike(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !ValidaStringIsEmpty.isEmpty(valor)) {
 
             /* LOWER é para a sql não ter case sentive */
             String condicao = geraItemColunaPesquisa(chave, valor, " LIKE LOWER('%", "%')");
@@ -156,7 +156,7 @@ public class JPQL {
 
     public void addParametroMaiorIgual(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !ValidaStringIsEmpty.isEmpty(valor)) {
 
             colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, ">=", null));
 
@@ -166,7 +166,7 @@ public class JPQL {
 
     public void addParametroMenorIgual(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !ValidaStringIsEmpty.isEmpty(valor)) {
 
             colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "<=", null));
 
@@ -176,7 +176,7 @@ public class JPQL {
 
     public void addParametroMenor(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !ValidaStringIsEmpty.isEmpty(valor)) {
 
             colunasPesquisar.add(geraItemColunaPesquisa(chave, valor, "<", null));
 
@@ -196,7 +196,7 @@ public class JPQL {
 
     public void addOrderBy(String chave, Object valor) {
 
-        if (!ValidaStringIsEmpty.isEmpty(chave) && !isNull(valor)) {
+        if (!ValidaStringIsEmpty.isEmpty(chave) && !ValidaStringIsEmpty.isEmpty(valor)) {
 
             colunasOrdenar.add(objetoDadosDoSelect + "." + chave + " " + valor);
 
