@@ -26,6 +26,7 @@ public class JPQL {
     private String geraItemColunaPesquisa(String chave, Object valor, String clausulaInicio, String clausulaFim) {
 
         String apostofro = "'";
+        boolean isString = false;
 
         switch (valor.getClass().getName()) {
 
@@ -45,6 +46,10 @@ public class JPQL {
                 apostofro = "";
                 break;
 
+            case "java.lang.String":
+                isString = true;
+                break;
+
             default:
 
                 /* valida se o valor é considerada é considerada uma data */
@@ -56,13 +61,31 @@ public class JPQL {
 
         }
 
-        if (!isNull(clausulaInicio) && !isNull(clausulaFim)) {
+        if (isString) {
 
-            return objetoDadosDoSelect + "." + chave + clausulaInicio + valor + clausulaFim;
+            valor = valor.toString().toLowerCase();
+
+            if (!isNull(clausulaInicio) && !isNull(clausulaFim)) {
+
+                return "LOWER(" + objetoDadosDoSelect + "." + chave + ")" + clausulaInicio + "LOWER(" + apostofro + valor + apostofro + ")" + clausulaFim;
+
+            } else {
+
+                return "LOWER(" + objetoDadosDoSelect + "." + chave + ")" + clausulaInicio + "LOWER(" + apostofro + valor + apostofro + ")";
+
+            }
 
         } else {
 
-            return objetoDadosDoSelect + "." + chave + clausulaInicio + apostofro + valor + apostofro;
+            if (!isNull(clausulaInicio) && !isNull(clausulaFim)) {
+
+                return objetoDadosDoSelect + "." + chave + clausulaInicio + valor + clausulaFim;
+
+            } else {
+
+                return objetoDadosDoSelect + "." + chave + clausulaInicio + apostofro + valor + apostofro;
+
+            }
 
         }
 
@@ -124,11 +147,16 @@ public class JPQL {
 
         if (!ValidaStringIsEmpty.isEmpty(chave) && !ValidaStringIsEmpty.isEmpty(valor)) {
 
-            /* LOWER é para a sql não ter case sentive */
-            String condicao = geraItemColunaPesquisa(chave, valor, " LIKE LOWER('%", "%')");
-            condicao = condicao.replace(objetoDadosDoSelect + "." + chave, "LOWER(" + objetoDadosDoSelect + "." + chave + ")");
+            // Só faz sentido usar like em textos
+            if (valor.getClass().getName().equals("java.lang.String")) {
 
-            colunasPesquisar.add(condicao);
+                /* LOWER é para a sql não ter case sentive */
+                String condicao = geraItemColunaPesquisa(chave, valor, " LIKE ", null);
+                String novoValor = String.valueOf(valor).toLowerCase();
+                condicao = condicao.replace("LIKE LOWER('" + novoValor + "')", "LIKE LOWER('%" + novoValor + "%')");
+                colunasPesquisar.add(condicao);
+
+            }
 
         }
 
