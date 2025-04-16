@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Apr 16 12:44:42 BRT 2025
+genesys-petshop-3.0.jar>=
+genesys-petshop-3.0.pom>=
+genesys-petshop-3.0-shaded.jar>=

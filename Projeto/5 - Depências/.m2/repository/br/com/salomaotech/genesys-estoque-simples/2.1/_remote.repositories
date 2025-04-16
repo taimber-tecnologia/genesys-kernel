@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Mar 12 16:58:48 BRT 2025
+genesys-estoque-simples-2.1.jar>=
+genesys-estoque-simples-2.1.pom>=
+genesys-estoque-simples-2.1-shaded.jar>=
